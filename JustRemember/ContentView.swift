@@ -1,10 +1,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         NavigationView {
-            VStack{
-               
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.blue, .white, .pink]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    VStack{
+                        CardView(word: "Anastasia", translation: "Anastasia")
+                    }
+                    .padding()
+                }
+                
+                Spacer()
+                    .navigationTitle("Word collection")
+                
             }
         }
     }
