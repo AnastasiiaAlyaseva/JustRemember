@@ -3,14 +3,28 @@ import SwiftUI
 struct CardView: View {
     let word: String
     let translation: String
+
     
     var body: some View {
-        VStack{
+        HStack{
+            Image(systemName: "text.book.closed")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .foregroundColor(Color.black)
+            Spacer()
+            VStack(alignment: .leading){
             Text(word)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
+                .foregroundColor(Color.black)
+
             Text(translation)
                 .font(.system(.title, design: .rounded))
+                .foregroundColor(Color.black)
+
+        }
+            Spacer()
+            Image(systemName: "chevron.right")
         }
         .frame(maxWidth: .infinity,minHeight: 50 )
         .padding(25)

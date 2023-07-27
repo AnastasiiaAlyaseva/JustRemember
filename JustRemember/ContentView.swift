@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-@StateObject private var wordStorage = WordStorage()
+    @StateObject private var wordStorage = WordStorage()
     
     var body: some View {
         NavigationView {
@@ -12,14 +12,22 @@ struct ContentView: View {
                 ScrollView {
                     VStack{
                         ForEach(wordStorage.getWord()) { wordCart in
-                            CardView(word: wordCart.word, translation: wordCart.translation)
+                            NavigationLink(destination: Text(""), label: {
+                                CardView(word: wordCart.word, translation: wordCart.translation)
+                            })
                         }
                     }
                     .padding()
                 }
+                .navigationTitle("Word collection")
+                .navigationBarItems(
+                trailing:
+                    Image("profileIcon")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                )
                 
-                Spacer()
-                    .navigationTitle("Word collection")
                 
             }
         }
