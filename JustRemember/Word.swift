@@ -5,4 +5,3 @@ struct Word: Identifiable {
     let word: String
     let translation: String
 }
-
