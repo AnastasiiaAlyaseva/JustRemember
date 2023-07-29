@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct CardView: View {
-    let word: String
-    let translation: String
+    let title: String
+    let subtitle: String
 
     var body: some View {
         HStack{
@@ -14,12 +14,12 @@ struct CardView: View {
             Spacer()
             
             VStack(alignment: .center){
-            Text(word)
+            Text(title)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(Color.black)
                 
-            Text(translation)
+            Text(subtitle)
                 .font(.system(.title, design: .rounded))
                 .foregroundColor(Color.black)
 
@@ -36,6 +36,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(word: "Hello", translation: "Hi")
+        CardView(title: "Hello", subtitle: "Hi")
     }
 }

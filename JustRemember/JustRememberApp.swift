@@ -4,7 +4,7 @@ import SwiftUI
 struct JustRememberApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

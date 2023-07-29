@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 struct Word: Identifiable {
     let id = UUID()
