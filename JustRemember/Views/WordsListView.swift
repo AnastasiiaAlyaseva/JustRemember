@@ -10,7 +10,8 @@ struct WordsListView: View {
                 
                 ScrollView {
                     ForEach(words) { word in
-                        CardView(title: word.word, subtitle: word.translation)
+                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.translation, description: "Feeling of great worry or anxiety caused by the knowledge of danger.")) {
+                            CardView(title: word.word, subtitle: word.translation) }
                     }
                     .padding()
                 }
