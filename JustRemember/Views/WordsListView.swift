@@ -10,8 +10,8 @@ struct WordsListView: View {
                 
                 ScrollView {
                     ForEach(words) { word in
-                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.translation, description: "Feeling of great worry or anxiety caused by the knowledge of danger.")) {
-                            CardView(title: word.word, subtitle: word.translation) }
+                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.meaning, description: "Feeling of great worry or anxiety caused by the knowledge of danger.")) {
+                            CardView(title: word.word, subtitle: word.meaning) }
                     }
                     .padding()
                 }
@@ -25,8 +25,8 @@ struct WordsListView: View {
 struct WordsListView_Previews: PreviewProvider {
     static var previews: some View {
         WordsListView(words: [
-            Word(word: "Disgust", translation: "отвращение"),
-            Word(word: "Sad", translation: "грусть")
+            Word(word: "Disgust", meaning: "отвращение"),
+            Word(word: "Sad", meaning: "грусть")
         ])
     }
 }
