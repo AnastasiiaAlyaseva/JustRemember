@@ -10,7 +10,7 @@ struct HomeView: View {
                 
                 ScrollView {
                     ForEach(storage.getCollections()) { collection in
-                        NavigationLink(destination: WordsListView(words: collection.words)) {
+                        NavigationLink(destination: TopicsView(words: collection.words)) {
                             CardView(title: collection.name, subtitle: "")
                         }
                     }

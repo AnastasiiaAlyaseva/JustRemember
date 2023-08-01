@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct WordsListView: View {
+struct TopicsView: View {
     var words: [Word]
     
     var body: some View {
@@ -10,7 +10,7 @@ struct WordsListView: View {
                 
                 ScrollView {
                     ForEach(words) { word in
-                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.meaning, description: "Feeling of great worry or anxiety caused by the knowledge of danger.")) {
+                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.meaning, description: "Detailed descriptions will be available here soon. Stay tuned for updates!")) {
                             CardView(title: word.word, subtitle: word.meaning) }
                     }
                     .padding()
@@ -22,9 +22,9 @@ struct WordsListView: View {
     }
 }
 
-struct WordsListView_Previews: PreviewProvider {
+struct TopicsView_Previews: PreviewProvider {
     static var previews: some View {
-        WordsListView(words: [
+        TopicsView(words: [
             Word(word: "Disgust", meaning: "отвращение"),
             Word(word: "Sad", meaning: "грусть")
         ])
