@@ -11,20 +11,16 @@ class Notifications {
             }
         }
     }
-    func sendNotification(date: Date, type: String, timeInterval: Double = 10, title: String, body: String) {
-        var trigger: UNNotificationTrigger?
-        
+    
+    func sendNotification(at date: Date, title: String, subtitle: String) { 
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = body
+        content.body = subtitle
         content.sound = UNNotificationSound.default
         
-        if type == "date" {
-            let dateComponents = Calendar.current.dateComponents([.day, .month, .year, .minute], from: date)
-            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        } else if type == "time" {
-            trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
-        }
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
