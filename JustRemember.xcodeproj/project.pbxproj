@@ -94,7 +94,6 @@
 			children = (
 				B5062C422A716D2E00D1BB0B /* Word.swift */,
 				B5F763BC2A73F3FC009342FE /* Collection.swift */,
-				B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				B5062C442A71702300D1BB0B /* Storage.swift */,
+				B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

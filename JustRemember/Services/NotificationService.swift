@@ -1,7 +1,7 @@
 import SwiftUI
 import UserNotifications
 
-class NotificationService {
+final class NotificationService {
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
@@ -12,7 +12,7 @@ class NotificationService {
         }
     }
     
-    func sendNotification(at date: Date, title: String, subtitle: String) { 
+    func sendNotification(title: String, subtitle: String, date: Date) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = subtitle
@@ -25,6 +25,7 @@ class NotificationService {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
+    
     func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval) {
         let content = UNMutableNotificationContent()
         content.title = title
