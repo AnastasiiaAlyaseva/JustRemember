@@ -1,19 +1,44 @@
 import SwiftUI
 import UserNotifications
 
-final class NotificationService {
-    func requestPermission() -> Bool {
-        var permission = false
-        
+protocol NotificationServiceProtocol {
+    
+    func checkStatus(completion: @escaping (NotificationStatus) -> ())
+    func requestPermission(completion: @escaping (Bool) -> ())
+    func sendNotification(title: String, subtitle: String, date: Date)
+    func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval)
+    func cancelAllNotifications()
+
+}
+
+final class NotificationService: NotificationServiceProtocol {
+    
+    func checkStatus(completion: @escaping (NotificationStatus) -> ()) {
+        let currentNotification = UNUserNotificationCenter.current()
+        currentNotification.getNotificationSettings(completionHandler: { (settings) in
+           if settings.authorizationStatus == .notDetermined {
+               print("Notification permission is yet to be been asked go for it!")
+               completion(NotificationStatus.notDetermined)
+           } else if settings.authorizationStatus == .denied {
+               print("Notification permission was denied previously, go to settings & privacy to re-enable the permission")
+               completion(NotificationStatus.denied)
+           } else if settings.authorizationStatus == .authorized {
+               print("Notification permission already granted")
+               completion(NotificationStatus.autorized)
+           }
+        })
+    }
+    
+    func requestPermission(completion: @escaping (Bool) -> ()) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
                 print("Granted permission of notifications!")
-                permission = true
+                completion(true)
             } else if let error = error {
                 print(error.localizedDescription)
+                completion(false)
             }
         }
-        return permission
     }
     
     func sendNotification(title: String, subtitle: String, date: Date) {
@@ -42,7 +67,7 @@ final class NotificationService {
         UNUserNotificationCenter.current().add(request)
     }
     
-    func cancelAllNotifications(){
+    func cancelAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

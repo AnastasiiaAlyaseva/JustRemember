@@ -5,6 +5,7 @@ struct SettingsView: View {
     @State private var isNotificationsEnabled = false
     @State private var selectedDate = Date()
     @State private var repeatInterval = 5
+    @State private var showAlert = false
     private let notificationService = NotificationService()
     
     var body: some View {
@@ -48,7 +49,31 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .onAppear {
-                notificationService.requestPermission()
+                notificationService.checkStatus { status in
+                    switch status {
+                    case .notDetermined:
+                        notificationService.requestPermission { isEnabled in
+                            if isEnabled {
+                                isNotificationsEnabled = true
+                            } else {
+                                isNotificationsEnabled = false
+                            }
+                        }
+                    case .autorized:
+                        isNotificationsEnabled = true
+                    case .denied:
+                        showAlert = true
+                    }
+                }
+                notificationService.requestPermission { isEnabled in
+                    print(isEnabled)
+                }
+            }
+            .alert(isPresented:$showAlert) {
+                Alert(
+                    title: Text("Notification permission was denied previously, go to settings & privacy to re-enable the permission!"),
+                    dismissButton: .default(Text("Ok"))
+                )
             }
             .onChange(of: isNotificationsEnabled) { active in
                 if !active {
