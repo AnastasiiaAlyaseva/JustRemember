@@ -6,7 +6,7 @@ struct SettingsView: View {
     @State private var selectedDate = Date()
     @State private var repeatInterval = 5
     @State private var showAlert = false
-    private let notificationService = NotificationService()
+    private let notificationService: NotificationServiceProtocol = NotificationService()
     
     var body: some View {
         NavigationStack {
@@ -18,7 +18,7 @@ struct SettingsView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                 
                 Section(header: Text("Notification settings")) {
-                    Toggle("Notification", isOn: $isNotificationsEnabled.animation())
+                    Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
                     if isNotificationsEnabled {
                         
                         DatePicker("Pice a date:", selection: $selectedDate, in: Date()...)
@@ -53,32 +53,31 @@ struct SettingsView: View {
                     switch status {
                     case .notDetermined:
                         notificationService.requestPermission { isEnabled in
-                            if isEnabled {
-                                isNotificationsEnabled = true
-                            } else {
-                                isNotificationsEnabled = false
-                            }
+                            isNotificationsEnabled = isEnabled
                         }
                     case .autorized:
-                        isNotificationsEnabled = true
+                        Task {
+                             isNotificationsEnabled = await notificationService.checkPlannedNotifications()
+                        }
                     case .denied:
                         showAlert = true
                     }
                 }
-                notificationService.requestPermission { isEnabled in
-                    print(isEnabled)
-                }
+            
             }
             .alert(isPresented:$showAlert) {
                 Alert(
-                    title: Text("Notification permission was denied previously, go to settings & privacy to re-enable the permission!"),
-                    dismissButton: .default(Text("Ok"))
+                    title: Text("Go to settings & privacy to re-enable the permission!"),
+                    dismissButton: .default(Text("Settings")) {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                 )
             }
-            .onChange(of: isNotificationsEnabled) { active in
-                if !active {
+            .onChange(of: isNotificationsEnabled) { isEnabled in
+                if !isEnabled {
                     notificationService.cancelAllNotifications()
-                    print("Canceled")
                 }
             }
         }

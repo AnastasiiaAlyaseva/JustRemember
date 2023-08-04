@@ -5,6 +5,7 @@ protocol NotificationServiceProtocol {
     
     func checkStatus(completion: @escaping (NotificationStatus) -> ())
     func requestPermission(completion: @escaping (Bool) -> ())
+    func checkPlannedNotifications() async -> Bool
     func sendNotification(title: String, subtitle: String, date: Date)
     func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval)
     func cancelAllNotifications()
@@ -12,9 +13,9 @@ protocol NotificationServiceProtocol {
 }
 
 final class NotificationService: NotificationServiceProtocol {
+    private let currentNotification = UNUserNotificationCenter.current()
     
     func checkStatus(completion: @escaping (NotificationStatus) -> ()) {
-        let currentNotification = UNUserNotificationCenter.current()
         currentNotification.getNotificationSettings(completionHandler: { (settings) in
            if settings.authorizationStatus == .notDetermined {
                print("Notification permission is yet to be been asked go for it!")
@@ -30,7 +31,7 @@ final class NotificationService: NotificationServiceProtocol {
     }
     
     func requestPermission(completion: @escaping (Bool) -> ()) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+        currentNotification.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
                 print("Granted permission of notifications!")
                 completion(true)
@@ -39,6 +40,12 @@ final class NotificationService: NotificationServiceProtocol {
                 completion(false)
             }
         }
+    }
+    
+    func checkPlannedNotifications() async -> Bool {
+        let pendingRequest = await currentNotification.pendingNotificationRequests()
+        print("Pending: \(pendingRequest.count)")
+        return pendingRequest.count > 0
     }
     
     func sendNotification(title: String, subtitle: String, date: Date) {
@@ -52,7 +59,7 @@ final class NotificationService: NotificationServiceProtocol {
         
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        currentNotification.add(request)
     }
     
     func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval) {
@@ -64,10 +71,12 @@ final class NotificationService: NotificationServiceProtocol {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: reapeatInterval, repeats: true)
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        currentNotification.add(request)
     }
     
     func cancelAllNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        currentNotification.removeAllPendingNotificationRequests()
     }
+    
+    
 }
