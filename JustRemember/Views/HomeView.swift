@@ -20,12 +20,12 @@ struct HomeView: View {
             .navigationTitle("Topics")
             .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
             .navigationBarItems(trailing:
-                NavigationLink(destination: SettingsView()){
+                NavigationLink(destination: SettingsView()) {
                     Image("profileIcon")
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-            }
+                }
             )
         }.accentColor(.black)
     }

@@ -5,7 +5,7 @@ struct SettingsView: View {
     @State private var isNotificationsEnabled = false
     @State private var selectedDate = Date()
     @State private var repeatInterval = 5
-    let notify = NotificationService()
+    private let notificationService = NotificationService()
     
     var body: some View {
         NavigationStack {
@@ -19,19 +19,14 @@ struct SettingsView: View {
                 Section(header: Text("Notification settings")) {
                     Toggle("Notification", isOn: $isNotificationsEnabled.animation())
                     if isNotificationsEnabled {
-                        Button("Request permission"){
-                            notify.requestPermission()
-                        }
-                        .foregroundColor(Color.blue)
                         
                         DatePicker("Pice a date:", selection: $selectedDate, in: Date()...)
                         let title = storage.getCollections()[1].words[1].word
                         let subtitle = storage.getCollections()[1].words[1].meaning
                         
                         Button("Schedule notification") {
-                            notify.sendNotification(title: title, subtitle: subtitle, date: selectedDate)
+                            notificationService.sendNotification(title: title, subtitle: subtitle, date: selectedDate)
                         }
-                        .foregroundColor(Color.blue)
                         
                         Picker("Choose reapeat interval", selection: $repeatInterval) {
                             Text("5 minutes").tag(5)
@@ -41,20 +36,28 @@ struct SettingsView: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                         
-                        
                         Button("Reapeat notification") {
                             let interval = TimeInterval(repeatInterval * 60)
                             let title = storage.getCollections()[1].words[1].word
                             let subtitle = storage.getCollections()[1].words[1].meaning
                             
-                            notify.sendRepeatingNotification(title: title, subtitle: subtitle, reapeatInterval: interval)
+                            notificationService.sendRepeatingNotification(title: title, subtitle: subtitle, reapeatInterval: interval)
                         }
-                        .foregroundColor(Color.blue)
                     }
                 }
             }
             .navigationTitle("Settings")
+            .onAppear {
+                notificationService.requestPermission()
+            }
+            .onChange(of: isNotificationsEnabled) { active in
+                if !active {
+                    notificationService.cancelAllNotifications()
+                    print("Canceled")
+                }
+            }
         }
+        .accentColor(.blue)
     }
 }
 

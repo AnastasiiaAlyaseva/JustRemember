@@ -2,14 +2,18 @@ import SwiftUI
 import UserNotifications
 
 final class NotificationService {
-    func requestPermission() {
+    func requestPermission() -> Bool {
+        var permission = false
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
-                print("All set!")
+                print("Granted permission of notifications!")
+                permission = true
             } else if let error = error {
                 print(error.localizedDescription)
             }
         }
+        return permission
     }
     
     func sendNotification(title: String, subtitle: String, date: Date) {
@@ -36,5 +40,9 @@ final class NotificationService {
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
+    }
+    
+    func cancelAllNotifications(){
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }
