@@ -6,8 +6,8 @@ protocol NotificationServiceProtocol {
     func checkStatus(completion: @escaping (NotificationStatus) -> ())
     func requestPermission(completion: @escaping (Bool) -> ())
     func checkPlannedNotifications() async -> Bool
-    func sendNotification(title: String, subtitle: String, date: Date)
-    func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval)
+    func scheduleNotification(title: String, subtitle: String, date: Date)
+    func scheduleRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval)
     func cancelAllNotifications()
 
 }
@@ -44,17 +44,17 @@ final class NotificationService: NotificationServiceProtocol {
     
     func checkPlannedNotifications() async -> Bool {
         let pendingRequest = await currentNotification.pendingNotificationRequests()
-        print("Pending: \(pendingRequest.count)")
+        print("Remaining Notifications Count: \(pendingRequest.count)")
         return pendingRequest.count > 0
     }
     
-    func sendNotification(title: String, subtitle: String, date: Date) {
+    func scheduleNotification(title: String, subtitle: String, date: Date) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = subtitle
         content.sound = UNNotificationSound.default
         
-        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         
         
@@ -62,7 +62,7 @@ final class NotificationService: NotificationServiceProtocol {
         currentNotification.add(request)
     }
     
-    func sendRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval) {
+    func scheduleRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.subtitle = subtitle
@@ -77,6 +77,5 @@ final class NotificationService: NotificationServiceProtocol {
     func cancelAllNotifications() {
         currentNotification.removeAllPendingNotificationRequests()
     }
-    
     
 }
