@@ -9,6 +9,7 @@ enum NotificationReapeatInterval: Int, Hashable {
     case twoHours       = 7200
     case fiveHours      = 18000
     case oneDay         = 86400
+    case twoDays        = 172800
     
     var name: String {
         switch self {
@@ -26,6 +27,8 @@ enum NotificationReapeatInterval: Int, Hashable {
             return "5 hours"
         case .oneDay:
             return "1 day"
+        case .twoDays:
+            return "2 days"
         }
     }
 }

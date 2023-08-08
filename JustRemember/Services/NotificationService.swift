@@ -43,9 +43,9 @@ final class NotificationService: NotificationServiceProtocol {
     }
     
     func checkPlannedNotifications() async -> Bool {
-        let pendingRequest = await currentNotification.pendingNotificationRequests()
-        print("Remaining Notifications Count: \(pendingRequest.count)")
-        return pendingRequest.count > 0
+        let pendingRequests = await currentNotification.pendingNotificationRequests()
+        print("Remaining Notifications Count: \(pendingRequests.count)")
+        return pendingRequests.count > 0
     }
     
     func scheduleNotification(title: String, subtitle: String, date: Date) {
@@ -59,7 +59,11 @@ final class NotificationService: NotificationServiceProtocol {
         
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        currentNotification.add(request)
+        currentNotification.add(request) { error in
+            if let error = error {
+                print(error)
+            }
+        }
     }
     
     func scheduleRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval) {

@@ -3,9 +3,10 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject private var storage = Storage()
     @State private var isNotificationsEnabled = false
-    @State private var selectedStartDate = Date()
+    @State private var selectedStartDate = Date() + 5 * 60
     @State private var repeatInterval = NotificationReapeatInterval.twoHours
-    @State private var showAlert = false
+    @State private var showSettingsAlert = false
+    @State private var showScheduleAlert = false
     private let notificationService: NotificationServiceProtocol = NotificationService()
     
     var body: some View {
@@ -21,7 +22,7 @@ struct SettingsView: View {
                     Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
                     
                     if isNotificationsEnabled {
-                        DatePicker("Start date:", selection: $selectedStartDate, in: (Date()+60)...)
+                        DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
                         
                         Picker("Reapeat interval", selection: $repeatInterval) {
                             Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
@@ -30,11 +31,18 @@ struct SettingsView: View {
                             Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
                             Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
                             Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
+                            Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
                         }
                         .pickerStyle(MenuPickerStyle())
                         
                         Button("Remebmer all words") {
                             scheduleAllWords()
+                            showScheduleAlert = true
+                        }.alert(isPresented:$showScheduleAlert){
+                            Alert(
+                                title: Text("You will receive notifications at set times"),
+                                dismissButton: .default(Text("Ok"))
+                            )
                         }
                     }
                 }
@@ -43,7 +51,7 @@ struct SettingsView: View {
             .onAppear {
                 checkNotificationsPermissions()
             }
-            .alert(isPresented:$showAlert) {
+            .alert(isPresented:$showSettingsAlert) {
                 Alert(
                     title: Text("Go to settings & privacy to re-enable the permission!"),
                     dismissButton: .default(Text("Settings")) {
@@ -56,8 +64,13 @@ struct SettingsView: View {
             .onChange(of: isNotificationsEnabled) { isEnabled in
                 if !isEnabled {
                     notificationService.cancelAllNotifications()
+                    print("Cancelled All Notifications")
                 }
             }
+            
+            Text("Version \(AppVersionProvider.appVersion()).\(AppVersionProvider.appBuild())")
+                .font(.subheadline)
+                .foregroundColor(.gray)
         }
         .accentColor(.blue)
     }
@@ -74,7 +87,7 @@ struct SettingsView: View {
                     isNotificationsEnabled = await notificationService.checkPlannedNotifications()
                 }
             case .denied:
-                showAlert = true
+                showSettingsAlert = true
             }
         }
     }
@@ -82,7 +95,7 @@ struct SettingsView: View {
     private func scheduleAllWords() {
         var date = selectedStartDate
         for collection in storage.getCollections() {
-            for word in collection.words{
+            for word in collection.words.shuffled() {
                 let title = word.word
                 let subtitle = word.meaning
                 notificationService.scheduleNotification(title: title, subtitle: subtitle, date: date)
