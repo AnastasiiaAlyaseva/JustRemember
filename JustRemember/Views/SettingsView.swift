@@ -48,30 +48,29 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .onAppear {
+                checkNotificationsPermissions()
+            }
+            .alert(isPresented:$showSettingsAlert) {
+                Alert(
+                    title: Text("Go to settings & privacy to re-enable the permission!"),
+                    dismissButton: .default(Text("Settings")) {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                )
+            }
+            .onChange(of: isNotificationsEnabled) { isEnabled in
+                if !isEnabled {
+                    notificationService.cancelAllNotifications()
+                    print("Cancelled All Notifications")
+                }
+            }
             
             Text("Version \(AppVersionProvider.appVersion()).\(AppVersionProvider.appBuild())")
                 .font(.subheadline)
                 .foregroundColor(.gray)
-            
-                .onAppear {
-                    checkNotificationsPermissions()
-                }
-                .alert(isPresented:$showSettingsAlert) {
-                    Alert(
-                        title: Text("Go to settings & privacy to re-enable the permission!"),
-                        dismissButton: .default(Text("Settings")) {
-                            if let url = URL(string: UIApplication.openSettingsURLString) {
-                                UIApplication.shared.open(url)
-                            }
-                        }
-                    )
-                }
-                .onChange(of: isNotificationsEnabled) { isEnabled in
-                    if !isEnabled {
-                        notificationService.cancelAllNotifications()
-                        print("Cancelled All Notifications")
-                    }
-                }
         }
         .accentColor(.blue)
     }
