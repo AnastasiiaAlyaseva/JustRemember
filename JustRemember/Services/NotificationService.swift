@@ -6,6 +6,7 @@ protocol NotificationServiceProtocol {
     func checkStatus(completion: @escaping (NotificationStatus) -> ())
     func requestPermission(completion: @escaping (Bool) -> ())
     func checkPlannedNotifications() async -> Bool
+    func countNotifications() async -> Int
     func scheduleNotification(title: String, subtitle: String, date: Date)
     func scheduleRepeatingNotification(title: String, subtitle: String, reapeatInterval: TimeInterval)
     func cancelAllNotifications()
@@ -46,6 +47,12 @@ final class NotificationService: NotificationServiceProtocol {
         let pendingRequests = await currentNotification.pendingNotificationRequests()
         print("Remaining Notifications Count: \(pendingRequests.count)")
         return pendingRequests.count > 0
+    }
+    
+    func countNotifications() async -> Int {
+        let pendingRequests = await currentNotification.pendingNotificationRequests()
+        print("Count: \(pendingRequests.count)")
+        return pendingRequests.count
     }
     
     func scheduleNotification(title: String, subtitle: String, date: Date) {
