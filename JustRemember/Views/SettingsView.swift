@@ -1,14 +1,17 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject private var storage = Storage()
+    var storage: Storage
+    private let notificationService: NotificationServiceProtocol = NotificationService()
+    
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.twoHours
     @State private var noPermissionsAlert = false
     @State private var errorScheduleAlert = false
     @State private var notificationCount: Int = 0
-    private let notificationService: NotificationServiceProtocol = NotificationService()
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         NavigationStack {
@@ -47,24 +50,22 @@ struct SettingsView: View {
                                 
                                 Button("Remebmer all words") {
                                     scheduleAllWords()
-                                    //updateNotificationCount()
                                     Task {
                                         let notificationCount = await notificationService.countRemainingNotifications()
-                                        print("notificationCount")
                                         if notificationCount == 0 {
                                             errorScheduleAlert = true
                                         }
                                         self.notificationCount = notificationCount
                                     }
                                 }
+                                .alert(isPresented:$errorScheduleAlert) {
+                                    return Alert(
+                                        title: Text("Oops!\n Check system permissions or time of notifications."),
+                                        dismissButton: .default(Text("Ok"))
+                                    )
+                                }
                             }
                         }
-                    }
-                    .alert(isPresented:$errorScheduleAlert) {
-                        return Alert(
-                            title: Text("Oops!\n Set a time to send notifications."),
-                            dismissButton: .default(Text("Ok"))
-                        )
                     }
             }
             .navigationTitle("Settings")
@@ -75,8 +76,10 @@ struct SettingsView: View {
                 Alert(
                     title: Text("Go to settings & privacy to re-enable the permission!"),
                     dismissButton: .default(Text("Settings")) {
+                        
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(url)
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                     }
                 )
@@ -84,9 +87,11 @@ struct SettingsView: View {
             .onChange(of: isNotificationsEnabled) { isEnabled in
                 if !isEnabled {
                     notificationService.cancelAllNotifications()
+                    Task {
+                        notificationCount = await notificationService.countRemainingNotifications()
+                    }
                     print("Cancelled All Notifications")
                 }
-                updateNotificationCount()
             }
             
             Text("Version \(AppVersionProvider.appVersion()).\(AppVersionProvider.appBuild())")
@@ -105,9 +110,9 @@ struct SettingsView: View {
                 }
             case .autorized:
                 Task {
-                    isNotificationsEnabled = await notificationService.countRemainingNotifications() > 0
+                    notificationCount = await notificationService.countRemainingNotifications()
+                    isNotificationsEnabled = notificationCount > 0
                 }
-                updateNotificationCount()
             case .denied:
                 noPermissionsAlert = true
             }
@@ -125,16 +130,10 @@ struct SettingsView: View {
             }
         }
     }
-    
-    private func updateNotificationCount() {
-        Task {
-            notificationCount = await notificationService.countRemainingNotifications()
-        }
-    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(storage: Storage())
     }
 }
