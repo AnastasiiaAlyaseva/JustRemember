@@ -7,7 +7,7 @@ final class NetworkClient: ObservableObject {
     
     func fetchDataFromURL() {
         
-        guard let url = URL(string: "https://script.google.com/macros/s/AKfycbxjrp93Wy1W2gH-F4IGuDb6dv8-M8aFhuOqwZd4n0TBX6DK8iLUgS0jsjXP0a9B0Ts/exec")
+        guard let url = URL(string: "https://script.google.com/macros/s/AKfycbxTmrG4JBCn-7JO6HKi7AgIIACGonl3jOttnLb4bMKUePRljdxqCZsEuTzxGyQBg-c/exec")
         else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in

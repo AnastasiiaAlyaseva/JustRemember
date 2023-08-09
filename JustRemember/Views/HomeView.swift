@@ -10,7 +10,7 @@ struct HomeView: View {
                 GradientView()
                 
                 ScrollView {
-                    ForEach(storage.getCollections()) { collection in
+                    ForEach(networkClient.collections) { collection in
                         NavigationLink(destination: TopicsView(words: collection.words)) {
                             CardView(title: collection.name, subtitle: "")
                         }
