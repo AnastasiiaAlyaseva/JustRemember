@@ -3,10 +3,10 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject private var storage = Storage()
     @State private var isNotificationsEnabled = false
-    @State private var selectedStartDate = Date() + 5 * 60
+    @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.twoHours
-    @State private var showSettingsAlert = false
-    @State private var showScheduleAlert = false
+    @State private var noPermissionsAlert = false
+    @State private var errorScheduleAlert = false
     @State private var notificationCount: Int = 0
     private let notificationService: NotificationServiceProtocol = NotificationService()
     
@@ -26,51 +26,52 @@ struct SettingsView: View {
                         Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
                         
                         if isNotificationsEnabled {
-                            DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
-                            
-                            Picker("Reapeat interval", selection: $repeatInterval) {
-                                Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
-                                Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
-                                Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
-                                Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
-                                Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
-                                Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
-                                Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
-                            }
-                            .pickerStyle(MenuPickerStyle())
-                            
-                            Button("Remebmer all words") {
-                                scheduleAllWords()
-                                updateNotificationCount()
-                                showScheduleAlert = true
-                            }
-                            .disabled(notificationCount > 0)
-                            .alert(isPresented:$showScheduleAlert){
-                                if notificationCount > 0 {
-                                    return Alert(
-                                        title: Text("Installed Notifications: \(notificationCount)"),
-                                        dismissButton: .default(Text("Ok"))
-                                    )
-                                } else {
-                                    return Alert(
-                                        title: Text("Oops!\n Set a time to send notifications."),
-                                        dismissButton: .default(Text("Ok"))
-                                    )
-                                }
-                            }
+                           
                             if notificationCount > 0 {
                                 Text("\(notificationCount) notifications remaining")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
+                            } else {
+                                DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
+                                
+                                Picker("Reapeat interval", selection: $repeatInterval) {
+                                    Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
+                                    Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
+                                    Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
+                                    Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
+                                    Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
+                                    Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
+                                    Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                                
+                                Button("Remebmer all words") {
+                                    scheduleAllWords()
+                                    //updateNotificationCount()
+                                    Task {
+                                        let notificationCount = await notificationService.countRemainingNotifications()
+                                        print("notificationCount")
+                                        if notificationCount == 0 {
+                                            errorScheduleAlert = true
+                                        }
+                                        self.notificationCount = notificationCount
+                                    }
+                                }
                             }
                         }
+                    }
+                    .alert(isPresented:$errorScheduleAlert) {
+                        return Alert(
+                            title: Text("Oops!\n Set a time to send notifications."),
+                            dismissButton: .default(Text("Ok"))
+                        )
                     }
             }
             .navigationTitle("Settings")
             .onAppear {
                 checkNotificationsPermissions()
             }
-            .alert(isPresented:$showSettingsAlert) {
+            .alert(isPresented:$noPermissionsAlert) {
                 Alert(
                     title: Text("Go to settings & privacy to re-enable the permission!"),
                     dismissButton: .default(Text("Settings")) {
@@ -85,6 +86,7 @@ struct SettingsView: View {
                     notificationService.cancelAllNotifications()
                     print("Cancelled All Notifications")
                 }
+                updateNotificationCount()
             }
             
             Text("Version \(AppVersionProvider.appVersion()).\(AppVersionProvider.appBuild())")
@@ -103,10 +105,11 @@ struct SettingsView: View {
                 }
             case .autorized:
                 Task {
-                    isNotificationsEnabled = await notificationService.checkPlannedNotifications()
+                    isNotificationsEnabled = await notificationService.countRemainingNotifications() > 0
                 }
+                updateNotificationCount()
             case .denied:
-                showSettingsAlert = true
+                noPermissionsAlert = true
             }
         }
     }
@@ -122,9 +125,10 @@ struct SettingsView: View {
             }
         }
     }
+    
     private func updateNotificationCount() {
         Task {
-            notificationCount = await notificationService.countNotifications()
+            notificationCount = await notificationService.countRemainingNotifications()
         }
     }
 }
