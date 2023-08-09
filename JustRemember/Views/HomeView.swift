@@ -20,7 +20,7 @@ struct HomeView: View {
             .navigationTitle("Topics")
             .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
             .navigationBarItems(trailing:
-                NavigationLink(destination: SettingsView()) {
+                NavigationLink(destination: SettingsView(storage: storage)) {
                     Image("profileIcon")
                     .resizable()
                     .frame(width: 40, height: 40)

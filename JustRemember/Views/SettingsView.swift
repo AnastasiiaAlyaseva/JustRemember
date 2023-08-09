@@ -1,13 +1,17 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject private var storage = Storage()
-    @State private var isNotificationsEnabled = false
-    @State private var selectedStartDate = Date() + 5 * 60
-    @State private var repeatInterval = NotificationReapeatInterval.twoHours
-    @State private var showSettingsAlert = false
-    @State private var showScheduleAlert = false
+    var storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
+    
+    @State private var isNotificationsEnabled = false
+    @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
+    @State private var repeatInterval = NotificationReapeatInterval.twoHours
+    @State private var noPermissionsAlert = false
+    @State private var errorScheduleAlert = false
+    @State private var notificationCount: Int = 0
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         NavigationStack {
@@ -18,45 +22,64 @@ struct SettingsView: View {
                     .clipShape(Circle())
                     .frame(maxWidth: .infinity, alignment: .center)
                 
-                Section(header: Text("Notification settings")) {
-                    Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
-                    
-                    if isNotificationsEnabled {
-                        DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
+                Section(header: Text("Notification settings"),
+                        footer: Text("Control the way you receive notifications as you see best. Optimise the balance between learning and comfort.")
+                    .font(.footnote)
+                    .foregroundColor(.gray)) {
+                        Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
                         
-                        Picker("Reapeat interval", selection: $repeatInterval) {
-                            Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
-                            Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
-                            Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
-                            Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
-                            Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
-                            Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
-                            Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
-                        }
-                        .pickerStyle(MenuPickerStyle())
-                        
-                        Button("Remebmer all words") {
-                            scheduleAllWords()
-                            showScheduleAlert = true
-                        }.alert(isPresented:$showScheduleAlert){
-                            Alert(
-                                title: Text("You will receive notifications at set times"),
-                                dismissButton: .default(Text("Ok"))
-                            )
+                        if isNotificationsEnabled {
+                           
+                            if notificationCount > 0 {
+                                Text("\(notificationCount) notifications remaining")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            } else {
+                                DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
+                                
+                                Picker("Reapeat interval", selection: $repeatInterval) {
+                                    Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
+                                    Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
+                                    Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
+                                    Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
+                                    Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
+                                    Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
+                                    Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                                
+                                Button("Remebmer all words") {
+                                    scheduleAllWords()
+                                    Task {
+                                        let notificationCount = await notificationService.countRemainingNotifications()
+                                        if notificationCount == 0 {
+                                            errorScheduleAlert = true
+                                        }
+                                        self.notificationCount = notificationCount
+                                    }
+                                }
+                                .alert(isPresented:$errorScheduleAlert) {
+                                    return Alert(
+                                        title: Text("Oops!\n Check system permissions or time of notifications."),
+                                        dismissButton: .default(Text("Ok"))
+                                    )
+                                }
+                            }
                         }
                     }
-                }
             }
             .navigationTitle("Settings")
             .onAppear {
                 checkNotificationsPermissions()
             }
-            .alert(isPresented:$showSettingsAlert) {
+            .alert(isPresented:$noPermissionsAlert) {
                 Alert(
                     title: Text("Go to settings & privacy to re-enable the permission!"),
                     dismissButton: .default(Text("Settings")) {
+                        
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(url)
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                     }
                 )
@@ -64,6 +87,9 @@ struct SettingsView: View {
             .onChange(of: isNotificationsEnabled) { isEnabled in
                 if !isEnabled {
                     notificationService.cancelAllNotifications()
+                    Task {
+                        notificationCount = await notificationService.countRemainingNotifications()
+                    }
                     print("Cancelled All Notifications")
                 }
             }
@@ -84,10 +110,11 @@ struct SettingsView: View {
                 }
             case .autorized:
                 Task {
-                    isNotificationsEnabled = await notificationService.checkPlannedNotifications()
+                    notificationCount = await notificationService.countRemainingNotifications()
+                    isNotificationsEnabled = notificationCount > 0
                 }
             case .denied:
-                showSettingsAlert = true
+                noPermissionsAlert = true
             }
         }
     }
@@ -107,6 +134,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(storage: Storage())
     }
 }
