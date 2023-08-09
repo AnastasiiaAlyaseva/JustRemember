@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TopicsView: View {
-    var words: [Word]
+    let words: [Word]
     
     var body: some View {
         NavigationStack {

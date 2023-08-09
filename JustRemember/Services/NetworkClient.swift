@@ -1,34 +1,37 @@
 import Foundation
 
-final class NetworkClient: ObservableObject {
+final class NetworkClient {
+    private let urlSession = URLSession.shared
+    private let storage: Storage
     
-    @Published var collections: [Collection] = []
+    init(storage: Storage) {
+        self.storage = storage
+    }
     
-    
-    func fetchDataFromURL() {
+    func fetchData() {
+        guard let url = URL(string: AppConstatns.apiEndpoint) else {
+            print("Failed to creare URL")
+            return
+        }
         
-        guard let url = URL(string: "https://script.google.com/macros/s/AKfycbxTmrG4JBCn-7JO6HKi7AgIIACGonl3jOttnLb4bMKUePRljdxqCZsEuTzxGyQBg-c/exec")
-        else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-
+        urlSession.dataTask(with: url) { data, _, error in
             if let error = error {
-                print("Error getting documents data: \(String(describing: error))")
+                print("Error getting data from API: \(String(describing: error))")
                 return
             }
             
             guard let data = data else {
-                print("Error ")
+                print("Data is missing")
                 return
-                
             }
+            
             guard let networkResponse: NetworkResponse = try? JSONDecoder().decode(NetworkResponse.self, from: data) else {
-                print("networkResponse error")
+                print("Failed to decode network response")
                 return
-                
             }
+            
             DispatchQueue.main.async {
-                self.collections = networkResponse.data
+                self.storage.collections = networkResponse.data
             }
         }.resume()
     }

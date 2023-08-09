@@ -2,15 +2,17 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var storage = Storage()
-    @StateObject private var networkClient = NetworkClient()
+    
+    private var networkClient: NetworkClient {
+        NetworkClient(storage: storage)
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
                 GradientView()
-                
                 ScrollView {
-                    ForEach(networkClient.collections) { collection in
+                    ForEach(storage.collections) { collection in
                         NavigationLink(destination: TopicsView(words: collection.words)) {
                             CardView(title: collection.name, subtitle: "")
                         }
@@ -30,7 +32,7 @@ struct HomeView: View {
             )
         }.accentColor(.black)
         .onAppear{
-            networkClient.fetchDataFromURL()
+            networkClient.fetchData()
         }
     }
 }
