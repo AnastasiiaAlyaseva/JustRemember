@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var storage = Storage()
+    @StateObject private var networkClient = NetworkClient()
     
     var body: some View {
         NavigationStack {
@@ -28,6 +29,9 @@ struct HomeView: View {
                 }
             )
         }.accentColor(.black)
+        .onAppear{
+            networkClient.fetchDataFromURL()
+        }
     }
 }
 

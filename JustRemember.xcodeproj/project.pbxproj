@@ -15,11 +15,13 @@
 		B5062C432A716D2E00D1BB0B /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C422A716D2E00D1BB0B /* Word.swift */; };
 		B5062C452A71702300D1BB0B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C442A71702300D1BB0B /* Storage.swift */; };
 		B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51472572A7D63EF00BBE640 /* NotificationStatus.swift */; };
+		B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CD82A83DF04005CB59F /* NetworkResponse.swift */; };
 		B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */; };
 		B54CDE902A826E7E002F2AAB /* AppVersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8F2A826E7E002F2AAB /* AppVersionProvider.swift */; };
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
 		B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */; };
 		B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819C2A7A81EA003D1104 /* SettingsView.swift */; };
+		B5CD4C882A83B7FF00194E39 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */; };
 		B5F763BB2A731610009342FE /* TopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F763BA2A731610009342FE /* TopicsView.swift */; };
 		B5F763BD2A73F3FC009342FE /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F763BC2A73F3FC009342FE /* Collection.swift */; };
 		B5F763C22A754F92009342FE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F763C12A754F92009342FE /* GradientView.swift */; };
@@ -36,11 +38,13 @@
 		B5062C422A716D2E00D1BB0B /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		B5062C442A71702300D1BB0B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B51472572A7D63EF00BBE640 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
+		B5153CD82A83DF04005CB59F /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReapeatInterval.swift; sourceTree = "<group>"; };
 		B54CDE8F2A826E7E002F2AAB /* AppVersionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
 		B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5BC819C2A7A81EA003D1104 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		B5F763BA2A731610009342FE /* TopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsView.swift; sourceTree = "<group>"; };
 		B5F763BC2A73F3FC009342FE /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		B5F763C12A754F92009342FE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				B5F763BC2A73F3FC009342FE /* Collection.swift */,
 				B51472572A7D63EF00BBE640 /* NotificationStatus.swift */,
 				B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */,
+				B5153CD82A83DF04005CB59F /* NetworkResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 				B5062C442A71702300D1BB0B /* Storage.swift */,
 				B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */,
 				B54CDE8F2A826E7E002F2AAB /* AppVersionProvider.swift */,
+				B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -210,6 +216,8 @@
 				B54CDE902A826E7E002F2AAB /* AppVersionProvider.swift in Sources */,
 				B5F763BD2A73F3FC009342FE /* Collection.swift in Sources */,
 				B5F763C22A754F92009342FE /* GradientView.swift in Sources */,
+				B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */,
+				B5CD4C882A83B7FF00194E39 /* NetworkClient.swift in Sources */,
 				B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */,
 				B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */,
 				B5062C302A6FE9BB00D1BB0B /* JustRememberApp.swift in Sources */,
