@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    var storage: Storage
+    let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
     
     @State private var isNotificationsEnabled = false
@@ -121,7 +121,7 @@ struct SettingsView: View {
     
     private func scheduleAllWords() {
         var date = selectedStartDate
-        for collection in storage.getCollections() {
+        for collection in storage.collections {
             for word in collection.words.shuffled() {
                 let title = word.word
                 let subtitle = word.meaning

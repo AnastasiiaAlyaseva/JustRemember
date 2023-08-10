@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct TopicsView: View {
-    var words: [Word]
+    let words: [Word]
+    let topicName: String
     
     var body: some View {
         NavigationStack {
@@ -16,7 +17,7 @@ struct TopicsView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Words List")
+            .navigationTitle(topicName)
             .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
         }
     }
@@ -27,6 +28,6 @@ struct TopicsView_Previews: PreviewProvider {
         TopicsView(words: [
             Word(word: "Disgust", meaning: "отвращение"),
             Word(word: "Sad", meaning: "грусть")
-        ])
+        ], topicName: "Emotions")
     }
 }
