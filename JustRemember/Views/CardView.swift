@@ -20,7 +20,7 @@ struct CardView: View {
                 .foregroundColor(Color.black)
                 
             Text(subtitle)
-                .font(.system(.title, design: .rounded))
+                .font(.system(size: 20))
                 .foregroundColor(Color.black)
 
         }

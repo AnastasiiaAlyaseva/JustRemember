@@ -17,6 +17,7 @@
 		B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51472572A7D63EF00BBE640 /* NotificationStatus.swift */; };
 		B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CD82A83DF04005CB59F /* NetworkResponse.swift */; };
 		B5153CDB2A84001E005CB59F /* AppConstatns.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CDA2A84001E005CB59F /* AppConstatns.swift */; };
+		B5153CDD2A8504EF005CB59F /* LoaderAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */; };
 		B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */; };
 		B54CDE902A826E7E002F2AAB /* AppVersionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8F2A826E7E002F2AAB /* AppVersionProvider.swift */; };
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
@@ -41,6 +42,7 @@
 		B51472572A7D63EF00BBE640 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
 		B5153CD82A83DF04005CB59F /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		B5153CDA2A84001E005CB59F /* AppConstatns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstatns.swift; sourceTree = "<group>"; };
+		B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderAnimationView.swift; sourceTree = "<group>"; };
 		B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReapeatInterval.swift; sourceTree = "<group>"; };
 		B54CDE8F2A826E7E002F2AAB /* AppVersionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionProvider.swift; sourceTree = "<group>"; };
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				B5F763C12A754F92009342FE /* GradientView.swift */,
 				B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */,
 				B5BC819C2A7A81EA003D1104 /* SettingsView.swift */,
+				B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				B5F763C22A754F92009342FE /* GradientView.swift in Sources */,
 				B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */,
 				B5CD4C882A83B7FF00194E39 /* NetworkClient.swift in Sources */,
+				B5153CDD2A8504EF005CB59F /* LoaderAnimationView.swift in Sources */,
 				B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */,
 				B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */,
 				B5062C302A6FE9BB00D1BB0B /* JustRememberApp.swift in Sources */,
