@@ -11,6 +11,11 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 GradientView()
+                
+                if storage.collections.count == 0 {
+                    LoaderAnimationView()
+                }
+                
                 ScrollView {
                     ForEach(storage.collections) { collection in
                         NavigationLink(destination: TopicsView(words: collection.words, topicName: collection.name)) {
@@ -23,17 +28,17 @@ struct HomeView: View {
             .navigationTitle("Topics")
             .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
             .navigationBarItems(trailing:
-                NavigationLink(destination: SettingsView(storage: storage)) {
-                    Image("profileIcon")
+                                    NavigationLink(destination: SettingsView(storage: storage)) {
+                Image("profileIcon")
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                }
+            }
             )
         }.accentColor(.black)
-        .onAppear{
-            networkClient.fetchData()
-        }
+            .onAppear{
+                networkClient.fetchData()
+            }
     }
 }
 
