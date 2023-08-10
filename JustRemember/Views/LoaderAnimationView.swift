@@ -3,7 +3,7 @@ import SwiftUI
 struct LoaderAnimationView: View {
     @State private var isAnimating = false
     
-    var foreverAnimation: Animation {
+    private var foreverAnimation: Animation {
         Animation
             .spring(response: 1, dampingFraction: 0.7, blendDuration: 0)
             .repeatForever(autoreverses: false)
@@ -18,7 +18,9 @@ struct LoaderAnimationView: View {
             .animation(foreverAnimation, value: isAnimating)
             .onAppear{
                 isAnimating = true
-                
+            }
+            .onDisappear{
+                isAnimating = false
             }
     }
 }
