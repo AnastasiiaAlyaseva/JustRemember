@@ -6,7 +6,7 @@ struct SettingsView: View {
     
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
-    @State private var repeatInterval = NotificationReapeatInterval.twoHours
+    @State private var repeatInterval = NotificationReapeatInterval.oneDay
     @State private var noPermissionsAlert = false
     @State private var errorScheduleAlert = false
     @State private var notificationCount: Int = 0
