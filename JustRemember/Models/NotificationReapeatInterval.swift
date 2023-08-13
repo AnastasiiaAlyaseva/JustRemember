@@ -2,7 +2,9 @@ import Foundation
 
 // Int = seconds
 enum NotificationReapeatInterval: Int, Hashable {
+    #if DEBUG
     case twoSeconds     = 2
+    #endif
     case oneMinute      = 60
     case thirtyMinutes  = 1800
     case oneHour        = 3600
@@ -13,8 +15,10 @@ enum NotificationReapeatInterval: Int, Hashable {
     
     var name: String {
         switch self {
+        #if DEBUG
         case .twoSeconds:
             return "2 seconds"
+        #endif
         case .oneMinute:
             return "1 minute"
         case .thirtyMinutes:

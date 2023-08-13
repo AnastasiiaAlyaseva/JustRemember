@@ -38,7 +38,9 @@ struct SettingsView: View {
                                 DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
                                 
                                 Picker("Reapeat interval", selection: $repeatInterval) {
+                                    #if DEBUG
                                     Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
+                                    #endif
                                     Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
                                     Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
                                     Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
