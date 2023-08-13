@@ -26,8 +26,8 @@ struct TopicsView: View {
 struct TopicsView_Previews: PreviewProvider {
     static var previews: some View {
         TopicsView(words: [
-            Word(word: "Disgust", meaning: "отвращение"),
-            Word(word: "Sad", meaning: "грусть")
-        ], topicName: "Emotions")
+            Word(word: "Dishonest", meaning: "intending to trick people"),
+            Word(word: "Easy-going", meaning: "calm and not easily worried")
+        ], topicName: "Personality")
     }
 }
