@@ -11,7 +11,7 @@ struct TopicsView: View {
                 
                 ScrollView {
                     ForEach(words) { word in
-                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.meaning, description: "Detailed descriptions will be available here soon. Stay tuned for updates!")) {
+                        NavigationLink(destination: WordDescriptionView(title: word.word, subtitle: word.meaning, description: "")) {
                             CardView(title: word.word, subtitle: word.meaning) }
                     }
                     .padding()
