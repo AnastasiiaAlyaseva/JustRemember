@@ -10,6 +10,7 @@ struct SettingsView: View {
     @State private var repeatInterval = NotificationReapeatInterval.oneDay
     @State private var noPermissionsAlert = false
     @State private var errorScheduleAlert = false
+    @State private var emailErrorAlert = false
     @State private var notificationCount: Int = 0
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -99,12 +100,22 @@ struct SettingsView: View {
             }
             
             Button {
-                supportEmail.sendEmail(openURL: openURL)
+                let emailSentSuccess = supportEmail.sendEmail(openURL: openURL)
+                if !emailSentSuccess {
+                    emailErrorAlert = true
+                }
             } label: {
                 HStack{
                     Text("Support Email")
                         .font(.subheadline)
                 }
+            }
+            .alert(isPresented: $emailErrorAlert) {
+                Alert(
+                    title: Text("Email error"),
+                    message: Text("An error occurred while trying to send the support email."),
+                    dismissButton: .default(Text("Ok"))
+                )
             }
             
             Text("Version \(AppInfoProvider.appVersion()).\(AppInfoProvider.appBuild())")

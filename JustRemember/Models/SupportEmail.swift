@@ -18,21 +18,18 @@ struct SupportEmail {
 """
     }
     
-    func sendEmail(openURL: OpenURLAction) {
+    func sendEmail(openURL: OpenURLAction) -> Bool {
         let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let body = body.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let urlString = "mailto:\(toAddress)?subject=\(subject)&body=\(body)"
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else { return false}
         
-        //todo: check if all good, if not - show to user This device does not support email
+        var success = true
         openURL(url) { accepted in
             if !accepted {
-                print("""
-                This device does not support email
-                \(body)
-                """
-                )
+                success = false
             }
         }
+        return success
     }
 }
