@@ -14,5 +14,11 @@ enum AppVersionProvider {
         }
         return build
     }
+    static func appName(bundle: Bundle = .main) -> String {
+        guard let name = bundle.object(forInfoDictionaryKey: "CFBundleName") as? String else {
+            fatalError("CCFBundleName should not be missing from info dictionary")
+        }
+        return name
+    }
 }
 

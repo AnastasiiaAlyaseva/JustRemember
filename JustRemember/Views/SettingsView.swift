@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
+    let email = SupportEmail(toAddress: "180915an@gmail.com", subject: "Support Email", message: "Describe your issues or share your ideas with us!")
     
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
@@ -12,6 +13,7 @@ struct SettingsView: View {
     @State private var notificationCount: Int = 0
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         NavigationStack {
@@ -93,6 +95,15 @@ struct SettingsView: View {
                         notificationCount = await notificationService.countRemainingNotifications()
                     }
                     print("Cancelled All Notifications")
+                }
+            }
+            
+            Button {
+                email.sendEmail(openURL: openURL)
+            } label: {
+                HStack{
+                    Text("Support Email")
+                        .font(.subheadline)
                 }
             }
             
