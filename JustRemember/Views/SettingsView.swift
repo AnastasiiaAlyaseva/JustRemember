@@ -100,10 +100,11 @@ struct SettingsView: View {
             }
             
             Button {
-                let emailSentSuccess = supportEmail.sendEmail(openURL: openURL)
-                if !emailSentSuccess {
-                    emailErrorAlert = true
-                }
+                supportEmail.sendEmail(openURL: openURL, completion: { result in
+                    if !result {
+                        emailErrorAlert = true
+                    }
+                })
             } label: {
                 HStack{
                     Text("Support Email")

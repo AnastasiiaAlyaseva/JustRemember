@@ -18,18 +18,19 @@ struct SupportEmail {
 """
     }
     
-    func sendEmail(openURL: OpenURLAction) -> Bool {
+    func sendEmail(openURL: OpenURLAction, completion: @escaping (Bool) -> ()) {
         let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let body = body.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let urlString = "mailto:\(toAddress)?subject=\(subject)&body=\(body)"
-        guard let url = URL(string: urlString) else { return false}
         
-        var success = true
-        openURL(url) { accepted in
-            if !accepted {
-                success = false
-            }
+        guard let url = URL(string: urlString) else {
+            completion(false)
+            print("URL error")
+            return
         }
-        return success
+        
+        openURL(url) { accepted in
+            completion(accepted)
+        }
     }
 }
