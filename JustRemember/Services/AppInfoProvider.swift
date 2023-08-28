@@ -22,6 +22,6 @@ enum AppInfoProvider {
         return name
     }
     static let systemVersion = UIDevice.current.systemVersion
-    static let deviceMode = UIDevice.current.name
+    static let deviceModel = UIDevice.current.name
 }
 

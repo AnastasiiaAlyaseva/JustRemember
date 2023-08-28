@@ -3,18 +3,20 @@ import SwiftUI
 struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
-    private let supportEmail = SupportEmail(toAddress: AppConstatns.developerEmail, subject: "Support Email", message: "Describe your issues or share your ideas with us!")
+    private let supportEmail = SupportEmail(toAddress: AppConstatns.developerEmail,
+                                            subject: "Support Email",
+                                            message: "Describe your issues or share your ideas with us!")
     
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.oneDay
     @State private var noPermissionsAlert = false
     @State private var errorScheduleAlert = false
-    @State private var emailErrorAlert = false
+    @State private var supportEmailAlert = false
     @State private var notificationCount: Int = 0
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL) var openUrl
     
     var body: some View {
         NavigationStack {
@@ -100,10 +102,8 @@ struct SettingsView: View {
             }
             
             Button {
-                supportEmail.sendEmail(openURL: openURL, completion: { result in
-                    if !result {
-                        emailErrorAlert = true
-                    }
+                supportEmail.sendEmail(openUrl: openUrl, completion: { result in
+                        supportEmailAlert = !result
                 })
             } label: {
                 HStack{
@@ -111,7 +111,7 @@ struct SettingsView: View {
                         .font(.subheadline)
                 }
             }
-            .alert(isPresented: $emailErrorAlert) {
+            .alert(isPresented: $supportEmailAlert) {
                 Alert(
                     title: Text("Email error"),
                     message: Text("An error occurred while trying to send the support email."),

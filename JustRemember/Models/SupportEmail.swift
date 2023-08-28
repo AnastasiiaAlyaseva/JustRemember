@@ -10,7 +10,7 @@ struct SupportEmail {
 
     App Name: \(AppInfoProvider.appName())
     IOS: \(AppInfoProvider.systemVersion)
-    Device Model: \(AppInfoProvider.deviceMode)
+    Device Model: \(AppInfoProvider.deviceModel)
     App Version: \(AppInfoProvider.appVersion()).\(AppInfoProvider.appBuild())
 
     ________________________________________
@@ -18,7 +18,7 @@ struct SupportEmail {
 """
     }
     
-    func sendEmail(openURL: OpenURLAction, completion: @escaping (Bool) -> ()) {
+    func sendEmail(openUrl: OpenURLAction, completion: @escaping (Bool) -> ()) {
         let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let body = body.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         let urlString = "mailto:\(toAddress)?subject=\(subject)&body=\(body)"
@@ -29,7 +29,7 @@ struct SupportEmail {
             return
         }
         
-        openURL(url) { accepted in
+        openUrl(url) { accepted in
             completion(accepted)
         }
     }
