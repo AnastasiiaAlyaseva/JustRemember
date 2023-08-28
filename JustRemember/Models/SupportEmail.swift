@@ -25,7 +25,6 @@ struct SupportEmail {
         
         guard let url = URL(string: urlString) else {
             completion(false)
-            print("URL error")
             return
         }
         

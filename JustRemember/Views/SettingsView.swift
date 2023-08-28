@@ -3,9 +3,10 @@ import SwiftUI
 struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
-    private let supportEmail = SupportEmail(toAddress: AppConstatns.developerEmail,
-                                            subject: "Support Email",
-                                            message: "Describe your issues or share your ideas with us!")
+    private let supportEmail = SupportEmail(
+        toAddress: AppConstatns.developerEmail,
+        subject: "Support Email",
+        message: "Describe your issues or share your ideas with us!")
     
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
@@ -103,7 +104,7 @@ struct SettingsView: View {
             
             Button {
                 supportEmail.sendEmail(openUrl: openUrl, completion: { result in
-                        supportEmailAlert = !result
+                    supportEmailAlert = !result
                 })
             } label: {
                 HStack{
