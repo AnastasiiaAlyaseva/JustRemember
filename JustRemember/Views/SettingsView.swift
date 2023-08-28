@@ -3,15 +3,21 @@ import SwiftUI
 struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
+    private let supportEmail = SupportEmail(
+        toAddress: AppConstatns.developerEmail,
+        subject: "Support Email",
+        message: "Describe your issues or share your ideas with us!")
     
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.oneDay
     @State private var noPermissionsAlert = false
     @State private var errorScheduleAlert = false
+    @State private var supportEmailAlert = false
     @State private var notificationCount: Int = 0
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.openURL) var openUrl
     
     var body: some View {
         NavigationStack {
@@ -29,7 +35,7 @@ struct SettingsView: View {
                         Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
                         
                         if isNotificationsEnabled {
-                           
+                            
                             if notificationCount > 0 {
                                 Text("\(notificationCount) notifications remaining")
                                     .font(.footnote)
@@ -38,9 +44,9 @@ struct SettingsView: View {
                                 DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
                                 
                                 Picker("Reapeat interval", selection: $repeatInterval) {
-                                    #if DEBUG
+#if DEBUG
                                     Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
-                                    #endif
+#endif
                                     Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
                                     Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
                                     Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
@@ -96,7 +102,25 @@ struct SettingsView: View {
                 }
             }
             
-            Text("Version \(AppVersionProvider.appVersion()).\(AppVersionProvider.appBuild())")
+            Button {
+                supportEmail.sendEmail(openUrl: openUrl, completion: { result in
+                    supportEmailAlert = !result
+                })
+            } label: {
+                HStack{
+                    Text("Support Email")
+                        .font(.subheadline)
+                }
+            }
+            .alert(isPresented: $supportEmailAlert) {
+                Alert(
+                    title: Text("Email error"),
+                    message: Text("An error occurred while trying to send the support email."),
+                    dismissButton: .default(Text("Ok"))
+                )
+            }
+            
+            Text("Version \(AppInfoProvider.appVersion()).\(AppInfoProvider.appBuild())")
                 .font(.subheadline)
                 .foregroundColor(.gray)
         }
