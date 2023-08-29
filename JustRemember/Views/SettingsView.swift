@@ -71,8 +71,8 @@ struct SettingsView: View {
                         }
                     }
                
-                Section(header: Text("Dark Mode")) {
-                    Toggle("Dark Mode", isOn: $isDarkMode)
+                Section(header: Text("Appearance")) {
+                    NavigationLink("Appearance", destination: AppearanceView())
                 }
             }
             .navigationTitle("Settings")
