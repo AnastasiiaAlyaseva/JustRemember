@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var storage = Storage()
+    @Environment(\.colorScheme) var colorScheme
     
     private var networkClient: NetworkClient {
         NetworkClient(storage: storage)
@@ -35,7 +36,8 @@ struct HomeView: View {
                     .clipShape(Circle())
             }
             )
-        }.accentColor(.black)
+        }
+        .accentColor(colorScheme == .dark ? Color.white : Color.black)
             .onAppear{
                 networkClient.fetchData()
             }

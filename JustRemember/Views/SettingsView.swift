@@ -4,6 +4,7 @@ struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
     
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.oneDay
@@ -69,6 +70,10 @@ struct SettingsView: View {
                             }
                         }
                     }
+               
+                Section(header: Text("Dark Mode")) {
+                    Toggle("Dark Mode", isOn: $isDarkMode)
+                }
             }
             .navigationTitle("Settings")
             .onAppear {

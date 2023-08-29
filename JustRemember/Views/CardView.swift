@@ -3,6 +3,7 @@ import SwiftUI
 struct CardView: View {
     let title: String
     let subtitle: String
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         HStack{
@@ -17,8 +18,8 @@ struct CardView: View {
             Text(title)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
-                .foregroundColor(Color.black)
-                
+                .accentColor(colorScheme == .dark ? Color.white : Color.black)
+
             Text(subtitle)
                 .font(.system(size: 20))
                 .foregroundColor(Color.black)
