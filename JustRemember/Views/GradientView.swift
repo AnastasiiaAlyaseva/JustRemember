@@ -4,13 +4,9 @@ struct GradientView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let gradientColors: [Color]
+        let middleColor: Color = colorScheme == .dark ? .black : .white
         
-        if colorScheme == .dark {
-            gradientColors = [Color(UIColor.systemBlue),Color(UIColor.black), Color(UIColor.systemPink)]
-        } else {
-            gradientColors = [Color(UIColor.systemBlue), .white, Color(UIColor.systemPink)]
-        }
+        let gradientColors = [Color(UIColor.systemBlue), middleColor, Color(UIColor.systemPink)]
         
         return LinearGradient(gradient: Gradient(colors: gradientColors),
                               startPoint: .topLeading,

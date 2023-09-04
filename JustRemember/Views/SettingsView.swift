@@ -50,6 +50,7 @@ struct SettingsView: View {
                                     Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
                                 }
                                 .pickerStyle(MenuPickerStyle())
+                                .accentColor(Color(UIColor.label))
                                 
                                 Button("Remebmer all words") {
                                     scheduleAllWords()
@@ -105,7 +106,7 @@ struct SettingsView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
         }
-        .accentColor(.blue)
+        .accentColor(Color(UIColor.systemBlue))
     }
     
     private func checkNotificationsPermissions() {

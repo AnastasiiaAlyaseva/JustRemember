@@ -3,13 +3,15 @@ import SwiftUI
 struct CardView: View {
     let title: String
     let subtitle: String
+    
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         HStack{
             Image(systemName: "text.book.closed")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .accentColor(Color(UIColor.label))
+                .accentColor(colorScheme == .dark ? .mint : .black)
             
             Spacer()
             
