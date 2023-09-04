@@ -1,12 +1,20 @@
 import SwiftUI
 
 struct GradientView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        LinearGradient(gradient: Gradient(
-            colors: [.blue, .white, .pink]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
+        let gradientColors: [Color]
+        
+        if colorScheme == .dark {
+            gradientColors = [Color(UIColor.systemBlue),Color(UIColor.black), Color(UIColor.systemPink)]
+        } else {
+            gradientColors = [Color(UIColor.systemBlue), .white, Color(UIColor.systemPink)]
+        }
+        
+        return LinearGradient(gradient: Gradient(colors: gradientColors),
+                              startPoint: .topLeading,
+                              endPoint: .bottomTrailing)
         .edgesIgnoringSafeArea(.all)
     }
 }

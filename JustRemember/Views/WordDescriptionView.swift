@@ -19,13 +19,13 @@ struct WordDescriptionView: View {
                         Text(title)
                             .font(.system(.title, design: .rounded))
                             .fontWeight(.black)
-                            .foregroundColor(Color.black)
+                            .accentColor(Color(UIColor.label))
                         
                         Text("-")
+                            .accentColor(Color(UIColor.label))
                         Text(subtitle)
                             .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                        
+                            .accentColor(Color(UIColor.label))
                     }
                     
                     Text(description)

@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct AppearanceView: View {
-    @Environment(\.colorScheme) var colorScheme
     @AppStorage("selectedAppearance") private var selectedAppearance = Appearance.system
     
     var body: some View {
@@ -22,10 +21,11 @@ struct AppearanceView: View {
                     }
                 }
             }
-            .accentColor(colorScheme == .dark ? Color.white : Color.black)
+            .accentColor(Color(UIColor.label))
             .navigationTitle("Appearance")
         }
     }
+    
     private func setAppearance (_ selectedAppearance: Appearance){
         let style: UIUserInterfaceStyle
         switch selectedAppearance {

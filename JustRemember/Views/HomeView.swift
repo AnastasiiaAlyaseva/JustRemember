@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var storage = Storage()
-    @Environment(\.colorScheme) var colorScheme
+    
     
     private var networkClient: NetworkClient {
         NetworkClient(storage: storage)
@@ -37,7 +37,7 @@ struct HomeView: View {
             }
             )
         }
-        .accentColor(colorScheme == .dark ? Color.white : Color.black)
+        .accentColor(Color(UIColor.label))
             .onAppear{
                 networkClient.fetchData()
             }
