@@ -11,7 +11,7 @@ struct CardView: View {
             Image(systemName: "text.book.closed")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .accentColor(colorScheme == .dark ? .mint : .black)
+                .accentColor(.imageColor(for: colorScheme))
             
             Spacer()
             
