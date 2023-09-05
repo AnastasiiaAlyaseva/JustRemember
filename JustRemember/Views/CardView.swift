@@ -11,7 +11,7 @@ struct CardView: View {
             Image(systemName: "text.book.closed")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .accentColor(.imageColor(for: colorScheme))
+                .accentColor(.imageColor(colorScheme: colorScheme))
             
             Spacer()
             
@@ -19,11 +19,11 @@ struct CardView: View {
             Text(title)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
-                .accentColor(Color(UIColor.label))
+                .accentColor(.label)
 
             Text(subtitle)
                 .font(.system(size: 20))
-                .accentColor(Color(UIColor.label))
+                .accentColor(.label)
 
         }
             Spacer()

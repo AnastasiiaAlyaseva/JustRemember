@@ -18,7 +18,7 @@ struct TopicsView: View {
                 }
             }
             .navigationTitle(topicName)
-            .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
+            .toolbarBackground(Color.toolBarColor, for: .navigationBar)
         }
     }
 }

@@ -4,13 +4,15 @@ struct GradientView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let middleColor: Color = .appTextColor(for: colorScheme)
+        let secondColor: Color = .gradientElementColor(colorScheme: colorScheme)
         
-        let gradientColors = [Color(UIColor.systemBlue), middleColor, Color(UIColor.systemPink)]
+        let gradientColors = [.systemBlue, secondColor, .systemPink]
         
-        return LinearGradient(gradient: Gradient(colors: gradientColors),
-                              startPoint: .topLeading,
-                              endPoint: .bottomTrailing)
+        return LinearGradient(
+            gradient: Gradient(colors: gradientColors),
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
         .edgesIgnoringSafeArea(.all)
     }
 }

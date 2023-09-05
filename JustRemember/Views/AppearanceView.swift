@@ -21,7 +21,7 @@ struct AppearanceView: View {
                     }
                 }
             }
-            .accentColor(Color(UIColor.label))
+            .accentColor(.label)
             .navigationTitle("Appearance")
         }
     }
