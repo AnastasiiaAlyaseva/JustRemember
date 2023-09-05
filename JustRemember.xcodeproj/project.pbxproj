@@ -15,6 +15,7 @@
 		B5062C432A716D2E00D1BB0B /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C422A716D2E00D1BB0B /* Word.swift */; };
 		B5062C452A71702300D1BB0B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C442A71702300D1BB0B /* Storage.swift */; };
 		B50F14082AA7525800FF8B9D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F14072AA7525800FF8B9D /* Color.swift */; };
+		B50F14162AA77E2700FF8B9D /* SupportEmailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */; };
 		B512EA022A963D8C004788E9 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512EA012A963D8C004788E9 /* SupportEmail.swift */; };
 		B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51472572A7D63EF00BBE640 /* NotificationStatus.swift */; };
 		B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CD82A83DF04005CB59F /* NetworkResponse.swift */; };
@@ -44,6 +45,7 @@
 		B5062C422A716D2E00D1BB0B /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		B5062C442A71702300D1BB0B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		B50F14072AA7525800FF8B9D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmailButton.swift; sourceTree = "<group>"; };
 		B512EA012A963D8C004788E9 /* SupportEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
 		B51472572A7D63EF00BBE640 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
 		B5153CD82A83DF04005CB59F /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				B5F763C12A754F92009342FE /* GradientView.swift */,
 				B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */,
 				B5BC819C2A7A81EA003D1104 /* SettingsView.swift */,
+				B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */,
 				B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */,
 				B542CDB42A9E58D100F57B8E /* AppearanceView.swift */,
 			);
@@ -230,6 +233,7 @@
 				B5062C322A6FE9BB00D1BB0B /* HomeView.swift in Sources */,
 				B5062C452A71702300D1BB0B /* Storage.swift in Sources */,
 				B5062C432A716D2E00D1BB0B /* Word.swift in Sources */,
+				B50F14162AA77E2700FF8B9D /* SupportEmailButton.swift in Sources */,
 				B5F763BB2A731610009342FE /* TopicsView.swift in Sources */,
 				B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */,
 				B5062C412A70182C00D1BB0B /* CardView.swift in Sources */,
