@@ -1,9 +1,9 @@
 import SwiftUI
 
 final class AppearanceController {
-    @AppStorage("selectedAppearance") private var selectedAppearance = Appearance.system
+    @AppStorage(AppConstatns.appAppearance) private var selectedAppearance = Appearance.system
     
-    func setAppearance (){
+    func setAppearance() {
         let style: UIUserInterfaceStyle
         switch selectedAppearance {
         case .dark:

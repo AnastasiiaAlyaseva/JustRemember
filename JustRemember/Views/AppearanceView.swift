@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppearanceView: View {
-    @AppStorage("selectedAppearance") private var selectedAppearance = Appearance.system
+    @AppStorage(AppConstatns.appAppearance) private var selectedAppearance = Appearance.system
     
     var body: some View {
         NavigationStack {
