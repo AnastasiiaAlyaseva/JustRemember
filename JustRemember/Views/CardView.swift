@@ -3,13 +3,15 @@ import SwiftUI
 struct CardView: View {
     let title: String
     let subtitle: String
+    
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         HStack{
             Image(systemName: "text.book.closed")
                 .resizable()
                 .frame(width: 30, height: 30)
-                .foregroundColor(Color.black)
+                .accentColor(.imageColor(colorScheme: colorScheme))
             
             Spacer()
             
@@ -17,11 +19,11 @@ struct CardView: View {
             Text(title)
                 .font(.system(.title, design: .rounded))
                 .fontWeight(.black)
-                .foregroundColor(Color.black)
-                
+                .accentColor(.label)
+
             Text(subtitle)
                 .font(.system(size: 20))
-                .foregroundColor(Color.black)
+                .accentColor(.label)
 
         }
             Spacer()

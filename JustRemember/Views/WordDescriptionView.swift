@@ -19,18 +19,18 @@ struct WordDescriptionView: View {
                         Text(title)
                             .font(.system(.title, design: .rounded))
                             .fontWeight(.black)
-                            .foregroundColor(Color.black)
+                            .accentColor(.label)
                         
                         Text("-")
+                            .accentColor(.label)
                         Text(subtitle)
                             .font(.system(size: 20))
-                            .foregroundColor(Color.black)
-                        
+                            .accentColor(.label)
                     }
                     
                     Text(description)
                         .padding()
-                        .foregroundColor(Color.black)
+                        .accentColor(.label)
                     
                     Spacer()
                 }

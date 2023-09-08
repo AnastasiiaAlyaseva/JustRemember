@@ -26,7 +26,7 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Topics")
-            .toolbarBackground(Color.blue.opacity(0.6), for: .navigationBar)
+            .toolbarBackground(Color.toolBarColor, for: .navigationBar)
             .navigationBarItems(trailing:
                                     NavigationLink(destination: SettingsView(storage: storage)) {
                 Image("profileIcon")
@@ -35,10 +35,11 @@ struct HomeView: View {
                     .clipShape(Circle())
             }
             )
-        }.accentColor(.black)
-            .onAppear{
-                networkClient.fetchData()
-            }
+        }
+        .accentColor(.label)
+        .onAppear{
+            networkClient.fetchData()
+        }
     }
 }
 

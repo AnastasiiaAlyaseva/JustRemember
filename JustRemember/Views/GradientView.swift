@@ -1,9 +1,15 @@
 import SwiftUI
 
 struct GradientView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        LinearGradient(gradient: Gradient(
-            colors: [.blue, .white, .pink]),
+        let secondColor: Color = .gradientElementColor(colorScheme: colorScheme)
+        
+        let gradientColors = [.systemBlue, secondColor, .systemPink]
+        
+        return LinearGradient(
+            gradient: Gradient(colors: gradientColors),
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )

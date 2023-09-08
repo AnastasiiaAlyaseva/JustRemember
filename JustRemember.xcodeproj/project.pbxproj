@@ -14,11 +14,16 @@
 		B5062C412A70182C00D1BB0B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C402A70182C00D1BB0B /* CardView.swift */; };
 		B5062C432A716D2E00D1BB0B /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C422A716D2E00D1BB0B /* Word.swift */; };
 		B5062C452A71702300D1BB0B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5062C442A71702300D1BB0B /* Storage.swift */; };
+		B50F14082AA7525800FF8B9D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F14072AA7525800FF8B9D /* Color.swift */; };
+		B50F14162AA77E2700FF8B9D /* SupportEmailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */; };
+		B50F14182AAB6D9400FF8B9D /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F14172AAB6D9400FF8B9D /* AppearanceController.swift */; };
 		B512EA022A963D8C004788E9 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B512EA012A963D8C004788E9 /* SupportEmail.swift */; };
 		B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51472572A7D63EF00BBE640 /* NotificationStatus.swift */; };
 		B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CD82A83DF04005CB59F /* NetworkResponse.swift */; };
 		B5153CDB2A84001E005CB59F /* AppConstatns.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CDA2A84001E005CB59F /* AppConstatns.swift */; };
 		B5153CDD2A8504EF005CB59F /* LoaderAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */; };
+		B542CDB52A9E58D100F57B8E /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542CDB42A9E58D100F57B8E /* AppearanceView.swift */; };
+		B542CDB72A9E5ACE00F57B8E /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542CDB62A9E5ACE00F57B8E /* Appearance.swift */; };
 		B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */; };
 		B54CDE902A826E7E002F2AAB /* AppInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8F2A826E7E002F2AAB /* AppInfoProvider.swift */; };
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
@@ -40,11 +45,16 @@
 		B5062C402A70182C00D1BB0B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B5062C422A716D2E00D1BB0B /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		B5062C442A71702300D1BB0B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		B50F14072AA7525800FF8B9D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmailButton.swift; sourceTree = "<group>"; };
+		B50F14172AAB6D9400FF8B9D /* AppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		B512EA012A963D8C004788E9 /* SupportEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
 		B51472572A7D63EF00BBE640 /* NotificationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStatus.swift; sourceTree = "<group>"; };
 		B5153CD82A83DF04005CB59F /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		B5153CDA2A84001E005CB59F /* AppConstatns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstatns.swift; sourceTree = "<group>"; };
 		B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderAnimationView.swift; sourceTree = "<group>"; };
+		B542CDB42A9E58D100F57B8E /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
+		B542CDB62A9E5ACE00F57B8E /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReapeatInterval.swift; sourceTree = "<group>"; };
 		B54CDE8F2A826E7E002F2AAB /* AppInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoProvider.swift; sourceTree = "<group>"; };
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
@@ -114,6 +124,7 @@
 				B51472572A7D63EF00BBE640 /* NotificationStatus.swift */,
 				B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */,
 				B5153CDA2A84001E005CB59F /* AppConstatns.swift */,
+				B542CDB62A9E5ACE00F57B8E /* Appearance.swift */,
 				B512EA012A963D8C004788E9 /* SupportEmail.swift */,
 			);
 			path = Models;
@@ -126,6 +137,8 @@
 				B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */,
 				B54CDE8F2A826E7E002F2AAB /* AppInfoProvider.swift */,
 				B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */,
+				B50F14072AA7525800FF8B9D /* Color.swift */,
+				B50F14172AAB6D9400FF8B9D /* AppearanceController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -139,7 +152,9 @@
 				B5F763C12A754F92009342FE /* GradientView.swift */,
 				B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */,
 				B5BC819C2A7A81EA003D1104 /* SettingsView.swift */,
+				B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */,
 				B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */,
+				B542CDB42A9E58D100F57B8E /* AppearanceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,11 +230,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */,
+				B50F14182AAB6D9400FF8B9D /* AppearanceController.swift in Sources */,
 				B512EA022A963D8C004788E9 /* SupportEmail.swift in Sources */,
 				B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */,
+				B50F14082AA7525800FF8B9D /* Color.swift in Sources */,
 				B5062C322A6FE9BB00D1BB0B /* HomeView.swift in Sources */,
 				B5062C452A71702300D1BB0B /* Storage.swift in Sources */,
 				B5062C432A716D2E00D1BB0B /* Word.swift in Sources */,
+				B50F14162AA77E2700FF8B9D /* SupportEmailButton.swift in Sources */,
 				B5F763BB2A731610009342FE /* TopicsView.swift in Sources */,
 				B51472582A7D63EF00BBE640 /* NotificationStatus.swift in Sources */,
 				B5062C412A70182C00D1BB0B /* CardView.swift in Sources */,
@@ -227,8 +245,10 @@
 				B5F763BD2A73F3FC009342FE /* Collection.swift in Sources */,
 				B5153CDB2A84001E005CB59F /* AppConstatns.swift in Sources */,
 				B5F763C22A754F92009342FE /* GradientView.swift in Sources */,
+				B542CDB52A9E58D100F57B8E /* AppearanceView.swift in Sources */,
 				B5153CD92A83DF04005CB59F /* NetworkResponse.swift in Sources */,
 				B5CD4C882A83B7FF00194E39 /* NetworkClient.swift in Sources */,
+				B542CDB72A9E5ACE00F57B8E /* Appearance.swift in Sources */,
 				B5153CDD2A8504EF005CB59F /* LoaderAnimationView.swift in Sources */,
 				B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */,
 				B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */,
