@@ -9,7 +9,6 @@ struct AppearanceView: View {
                 ForEach(Appearance.allCases, id: \.self) { appearance in
                     Button(action: {
                         selectedAppearance = appearance
-                        setAppearance(appearance)
                     }) {
                         HStack {
                             Text(appearance.name)
@@ -23,20 +22,11 @@ struct AppearanceView: View {
             }
             .accentColor(.label)
             .navigationTitle("Appearance")
+            
         }
-    }
-    
-    private func setAppearance (_ selectedAppearance: Appearance){
-        let style: UIUserInterfaceStyle
-        switch selectedAppearance {
-        case .dark:
-            style = .dark
-        case .light:
-            style = .light
-        case .system:
-            style = .unspecified
+        .onChange(of: selectedAppearance) { userSelection in
+            AppearanceController().setAppearance()
         }
-        UIApplication.shared.windows.first?.overrideUserInterfaceStyle = style
     }
 }
 
