@@ -1,7 +1,7 @@
 import Foundation
 
 // Int = seconds
-enum NotificationReapeatInterval: Int, Hashable {
+enum NotificationReapeatInterval: Int, Hashable, CaseIterable {
     #if DEBUG
     case twoSeconds     = 2
     #endif
