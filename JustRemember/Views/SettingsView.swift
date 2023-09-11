@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     let storage: Storage
     private let notificationService: NotificationServiceProtocol = NotificationService()
-
+    
     @State private var isNotificationsEnabled = false
     @State private var selectedStartDate = Date() + 5 * 60 // current time + 5 minutes
     @State private var repeatInterval = NotificationReapeatInterval.oneDay
@@ -38,15 +38,9 @@ struct SettingsView: View {
                                 DatePicker("Start date:", selection: $selectedStartDate, in: (selectedStartDate)...)
                                 
                                 Picker("Reapeat interval", selection: $repeatInterval) {
-#if DEBUG
-                                    Text(NotificationReapeatInterval.twoSeconds.name).tag(NotificationReapeatInterval.twoSeconds)
-#endif
-                                    Text(NotificationReapeatInterval.oneMinute.name).tag(NotificationReapeatInterval.oneMinute)
-                                    Text(NotificationReapeatInterval.thirtyMinutes.name).tag(NotificationReapeatInterval.thirtyMinutes)
-                                    Text(NotificationReapeatInterval.oneHour.name).tag(NotificationReapeatInterval.oneHour)
-                                    Text(NotificationReapeatInterval.twoHours.name).tag(NotificationReapeatInterval.twoHours)
-                                    Text(NotificationReapeatInterval.oneDay.name).tag(NotificationReapeatInterval.oneDay)
-                                    Text(NotificationReapeatInterval.twoDays.name).tag(NotificationReapeatInterval.twoDays)
+                                    ForEach(NotificationReapeatInterval.allCases, id:\.self) { interval in
+                                        Text(interval.name).tag(interval)
+                                    }
                                 }
                                 .pickerStyle(MenuPickerStyle())
                                 .accentColor(.label)
@@ -70,7 +64,7 @@ struct SettingsView: View {
                             }
                         }
                     }
-               
+                
                 Section(header: Text("Appearance")) {
                     NavigationLink("Appearance", destination: AppearanceView())
                 }
