@@ -12,8 +12,13 @@ protocol NotificationServiceProtocol {
 
 }
 
-final class NotificationService: NotificationServiceProtocol {
+final class NotificationService: NSObject, NotificationServiceProtocol, UNUserNotificationCenterDelegate {
     private let currentNotification = UNUserNotificationCenter.current()
+    
+    override init() {
+        super.init()
+        currentNotification.delegate = self
+    }
     
     func checkStatus(completion: @escaping (NotificationStatus) -> ()) {
         currentNotification.getNotificationSettings(completionHandler: { (settings) in
@@ -81,6 +86,14 @@ final class NotificationService: NotificationServiceProtocol {
     
     func cancelAllNotifications() {
         currentNotification.removeAllPendingNotificationRequests()
+    }
+    
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.banner, .sound])
     }
     
 }
