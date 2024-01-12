@@ -29,6 +29,7 @@
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
 		B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */; };
 		B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819C2A7A81EA003D1104 /* SettingsView.swift */; };
+		B5C35AFE2B5163A8001E5A5B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C35AFD2B5163A8001E5A5B /* Launch Screen.storyboard */; };
 		B5CD4C882A83B7FF00194E39 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */; };
 		B5F763BB2A731610009342FE /* TopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F763BA2A731610009342FE /* TopicsView.swift */; };
 		B5F763BD2A73F3FC009342FE /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F763BC2A73F3FC009342FE /* Collection.swift */; };
@@ -60,6 +61,7 @@
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
 		B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5BC819C2A7A81EA003D1104 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B5C35AFD2B5163A8001E5A5B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		B5F763BA2A731610009342FE /* TopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsView.swift; sourceTree = "<group>"; };
 		B5F763BC2A73F3FC009342FE /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				B5F763BF2A754DDF009342FE /* Services */,
 				B5F763BE2A754D80009342FE /* Models */,
 				B5062C332A6FE9BC00D1BB0B /* Assets.xcassets */,
+				B5C35AFD2B5163A8001E5A5B /* Launch Screen.storyboard */,
 				B5062C3D2A6FED3400D1BB0B /* Info.plist */,
 				B5062C352A6FE9BC00D1BB0B /* Preview Content */,
 			);
@@ -217,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C35AFE2B5163A8001E5A5B /* Launch Screen.storyboard in Resources */,
 				B5062C372A6FE9BC00D1BB0B /* Preview Assets.xcassets in Resources */,
 				B5062C342A6FE9BC00D1BB0B /* Assets.xcassets in Resources */,
 			);
@@ -390,6 +394,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -423,6 +428,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
