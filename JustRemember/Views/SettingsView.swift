@@ -123,16 +123,18 @@ struct SettingsView: View {
     }
     
     private func scheduleAllWords() {
-        var date = selectedStartDate
-        for collection in storage.collections {
-            for word in collection.words.shuffled() {
+            var date = selectedStartDate
+            var allWords: [Word] = []
+            for collection in storage.collections {
+                allWords += collection.words
+            }
+            for word in allWords.shuffled() {
                 let title = word.word
                 let subtitle = word.meaning
                 notificationService.scheduleNotification(title: title, subtitle: subtitle, date: date)
                 date += TimeInterval(repeatInterval.rawValue)
             }
         }
-    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
