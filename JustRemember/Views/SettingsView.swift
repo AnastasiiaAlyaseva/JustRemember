@@ -177,19 +177,16 @@ struct SettingsView: View {
             print("Cannot create date from components")
             return false
         }
-        if start > stop {
-            if start > date && date > stop {
-                return false
-            } else {
-                return true
-            }
+        var result: Bool
+        
+        if start > stop{
+            let nightRange = stop...start
+            result = !nightRange.contains(date)
         } else {
-            if start < date && date < stop {
-                return true
-            } else {
-                return false
-            }
+            let dayRange = start...stop
+            result = dayRange.contains(date)
         }
+        return result
     }
 }
 
