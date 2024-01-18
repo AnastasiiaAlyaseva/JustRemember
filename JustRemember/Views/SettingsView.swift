@@ -74,14 +74,18 @@ struct SettingsView: View {
                             }
                         }
                     }
-                Section(header: Text("Do not disturb")) {
+                Section(header: Text("Do not disturb"),
+                        footer: Text(isDoNotDisturbEnabled ? doNotDisturbHintText(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate) : "")
+                    .font(.footnote)
+                    .foregroundColor(.gray))
+                {
                     Toggle("Do not disturb", isOn: $isDoNotDisturbEnabled.animation())
                     
                     if isDoNotDisturbEnabled {
                         DatePicker("From", selection: $doNotDisturbStartDate, displayedComponents: .hourAndMinute)
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
                     }
-                }
+                }.disabled(notificationCount > 0)
                 
                 Section(header: Text("Appearance")) {
                     NavigationLink("Appearance", destination: AppearanceView())
@@ -165,18 +169,6 @@ struct SettingsView: View {
     }
     
     private func adjustCurrentNotificationDateIfNeeded(date: Date, doNotDisturbMode: DoNotDisturbMode, doNotDisturbStopDate: Date) -> Date {
-        // Examples for Tests in future
-        // currentNotificationDate = 17 Jan 8.00
-        //
-        // if active currentNotificationDate time = next time
-        // 1. any day but the same day .. 8.00 - 20.00 currentNotificationDate = .. day 20.00
-        // 2. any day but night time 20.00 - 11.00 currentNotificationDate = currentNotificationDate + 1 day & 11.00 = 18 Jan 11.00
-        //
-        // currentNotificationDate = 31 Jan 8.00
-        // 2. currentNotificationDate = 1 Feb 11.00
-        //
-        // currentNotificationDate = 31 Dec 2023 8.00
-        // 2. currentNotificationDate = 1 Jan 2024 11.00
         
         switch doNotDisturbMode {
         case .day, .night:
@@ -224,6 +216,38 @@ struct SettingsView: View {
         }
         
         return doNotDisturbMode
+    }
+    
+    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date) -> DoNotDisturbMode {
+        var doNotDisturbMode: DoNotDisturbMode = .inactive
+        
+        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
+        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
+        
+        guard let start: Date = calendar.date(from: startTime),
+              let stop: Date = calendar.date(from: stopTime) else
+        {
+            print("Cannot create date from components")
+            return doNotDisturbMode
+        }
+        
+        if start > stop {
+            doNotDisturbMode = .night
+        } else {
+            doNotDisturbMode = .day
+        }
+        
+        return doNotDisturbMode
+    }
+    
+    private func doNotDisturbHintText(startDate: Date, stopDate: Date) -> String {
+        let startTime = startDate.formatted(date: .omitted, time: .shortened)
+        let stopTime = stopDate.formatted(date: .omitted, time: .shortened)
+        let mode = checkDoNotDisturbMode(startDate: startDate, stopDate: stopDate)
+        let tail = (mode == .night) ? "next day" : ""
+        
+        let message = "Every day\n\(startTime) - \(stopTime) \(tail)"
+        return message
     }
 }
 
