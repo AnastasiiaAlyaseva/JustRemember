@@ -2,7 +2,10 @@ import SwiftUI
 
 struct SettingsView: View {
     let storage: Storage
+    
     private let notificationService: NotificationServiceProtocol = NotificationService()
+    
+    private let calendar = Calendar.current
     private static let fiveMinutes: TimeInterval = 5 * 60
     private static let threeHours: TimeInterval = 3 * 60 * 60
     
@@ -17,7 +20,6 @@ struct SettingsView: View {
     @State private var isDoNotDisturbEnabled = false
     @State private var doNotDisturbStartDate = Date()
     @State private var doNotDisturbStopDate = Date() + threeHours
-    
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -139,8 +141,7 @@ struct SettingsView: View {
     }
     
     private func scheduleAllWords() {
-        var date = notificationsStartDate
-        //        print(date)
+        var currentNotificationDate = notificationsStartDate
         var allWords: [Word] = []
         for collection in storage.collections {
             allWords += collection.words
@@ -149,23 +150,51 @@ struct SettingsView: View {
         for word in allWords.shuffled() {
             let title = word.word
             let subtitle = word.meaning
+            
             if isDoNotDisturbEnabled {
-                // fix bug with infinite loop in case of DND active "whole" day
-                while isDNDActive(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate, notificationDate: date) {
-                    date += TimeInterval(notificationRepeatInterval.rawValue)
-                }
-                notificationService.scheduleNotification(title: title, subtitle: subtitle, date: date)
-                date += TimeInterval(notificationRepeatInterval.rawValue)
-            } else {
-                notificationService.scheduleNotification(title: title, subtitle: subtitle, date: date)
-                date += TimeInterval(notificationRepeatInterval.rawValue)
+                let doNotDisturbMode = checkDoNotDisturbMode(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate, notificationDate: currentNotificationDate)
+                currentNotificationDate = adjustCurrentNotificationDateIfNeeded(date: currentNotificationDate, doNotDisturbMode: doNotDisturbMode, doNotDisturbStopDate: doNotDisturbStopDate)
             }
+            
+            // uncomment for testing
+            // print("title=\(title) currentNotificationDate=\(currentNotificationDate.formatted())")
+            
+            notificationService.scheduleNotification(title: title, subtitle: subtitle, date: currentNotificationDate)
+            currentNotificationDate += TimeInterval(notificationRepeatInterval.rawValue)
         }
     }
     
-    private func isDNDActive(startDate: Date, stopDate: Date, notificationDate: Date) -> Bool {
+    private func adjustCurrentNotificationDateIfNeeded(date: Date, doNotDisturbMode: DoNotDisturbMode, doNotDisturbStopDate: Date) -> Date {
+        // Examples for Tests in future
+        // currentNotificationDate = 17 Jan 8.00
+        //
+        // if active currentNotificationDate time = next time
+        // 1. any day but the same day .. 8.00 - 20.00 currentNotificationDate = .. day 20.00
+        // 2. any day but night time 20.00 - 11.00 currentNotificationDate = currentNotificationDate + 1 day & 11.00 = 18 Jan 11.00
+        //
+        // currentNotificationDate = 31 Jan 8.00
+        // 2. currentNotificationDate = 1 Feb 11.00
+        //
+        // currentNotificationDate = 31 Dec 2023 8.00
+        // 2. currentNotificationDate = 1 Jan 2024 11.00
         
-        let calendar = Calendar.current
+        switch doNotDisturbMode {
+        case .day, .night:
+            // day: set time
+            // night: next day + set time
+            // autocalculation via nextDate()
+            let stopTime = calendar.dateComponents([.hour, .minute], from: doNotDisturbStopDate)
+            guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
+            return nextDate
+            
+        case .inactive:
+            return date
+        }
+    }
+    
+    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date, notificationDate: Date) -> DoNotDisturbMode {
+        var doNotDisturbMode: DoNotDisturbMode = .inactive
+        
         let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
         let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
         let dateTime = calendar.dateComponents([.hour, .minute], from: notificationDate)
@@ -175,18 +204,26 @@ struct SettingsView: View {
               let date: Date = calendar.date(from: dateTime) else
         {
             print("Cannot create date from components")
-            return false
+            return doNotDisturbMode
         }
-        var result: Bool
         
         if start > stop{
             let nightRange = stop...start
-            result = !nightRange.contains(date)
+            let isDoNotDisturbActive = !nightRange.contains(date)
+            
+            if isDoNotDisturbActive {
+                doNotDisturbMode = .night
+            }
         } else {
             let dayRange = start...stop
-            result = dayRange.contains(date)
+            let isDoNotDisturbActive = dayRange.contains(date)
+            
+            if isDoNotDisturbActive {
+                doNotDisturbMode = .day
+            }
         }
-        return result
+        
+        return doNotDisturbMode
     }
 }
 
