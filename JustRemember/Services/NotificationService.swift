@@ -14,6 +14,7 @@ protocol NotificationServiceProtocol {
 
 final class NotificationService: NSObject, NotificationServiceProtocol, UNUserNotificationCenterDelegate {
     private let currentNotification = UNUserNotificationCenter.current()
+    private let calendar = Calendar.current
     
     override init() {
         super.init()
@@ -60,9 +61,8 @@ final class NotificationService: NSObject, NotificationServiceProtocol, UNUserNo
         content.body = subtitle
         content.sound = UNNotificationSound.default
         
-        let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        let triggerDate = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .timeZone], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         currentNotification.add(request) { error in
