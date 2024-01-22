@@ -55,7 +55,7 @@ struct SettingsView: View {
                                 .pickerStyle(MenuPickerStyle())
                                 .accentColor(.label)
                                 
-                                Button("Remebmer all words") {
+                                Button("Remebmer random words") {
                                     scheduleAllWords()
                                     Task {
                                         let notificationCount = await notificationService.countRemainingNotifications()
@@ -150,8 +150,8 @@ struct SettingsView: View {
         for collection in storage.collections {
             allWords += collection.words
         }
-        
-        for word in allWords.shuffled() {
+        let randomWords = allWords.shuffled().prefix(AppConstatns.maxCountNotification)
+        for word in randomWords {
             let title = word.word
             let subtitle = word.meaning
             
