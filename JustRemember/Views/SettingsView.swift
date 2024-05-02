@@ -55,7 +55,7 @@ struct SettingsView: View {
                                 .pickerStyle(MenuPickerStyle())
                                 .accentColor(.label)
                                 
-                                Button("Remebmer random words") {
+                                Button("Remember random words") {
                                     scheduleAllWords()
                                     Task {
                                         let notificationCount = await notificationService.countRemainingNotifications()
