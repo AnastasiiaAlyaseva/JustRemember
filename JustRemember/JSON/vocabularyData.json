@@ -1,0 +1,866 @@
+{
+   "data":[
+      {
+         "id":"2428bbb6-5a04-4f89-89f9-96c654fd63d6",
+         "name":"Personality",
+         "words":[
+            {
+               "id":"a89c551a-4a4b-4111-95bf-40294087b1c5",
+               "word":"Bold",
+               "meaning":"brave and confident"
+            },
+            {
+               "id":"f381ac17-5e38-4e39-8bbd-1c983aa0cebe",
+               "word":"Decent",
+               "meaning":"treating others with respect"
+            },
+            {
+               "id":"46eab0d9-a15c-41a1-a6df-92f97182b0e5",
+               "word":"Dishonest",
+               "meaning":"intending to trick people"
+            },
+            {
+               "id":"266e77d1-ce26-4786-860c-3b36eec94b8b",
+               "word":"Easy-going",
+               "meaning":"calm and not easily worried"
+            },
+            {
+               "id":"5e0a7017-7ffa-4163-8f11-8f3d7260c862",
+               "word":"Greedy",
+               "meaning":"having an excessive desire for wealth and power"
+            },
+            {
+               "id":"0ec2ef7a-fba5-4674-9453-2c6684dca05f",
+               "word":"Icy",
+               "meaning":"not friendly or kind"
+            },
+            {
+               "id":"ce0febd0-31dd-45a0-b3fd-0cc5928f8989",
+               "word":"Impatient",
+               "meaning":"unable to wait for a long time"
+            },
+            {
+               "id":"0b57100a-4b5c-4ed0-84f9-9356c6394f73",
+               "word":"Modest",
+               "meaning":"not willing to talk much about one's own life"
+            },
+            {
+               "id":"28ee4f4d-8719-42f5-b266-656b8d5d3aec",
+               "word":"Passionate",
+               "meaning":"having intense emotions or deep feelings"
+            },
+            {
+               "id":"26e4e736-2efb-47da-a27e-4394c3797ffe",
+               "word":"Reasonable",
+               "meaning":"showing good judgment"
+            },
+            {
+               "id":"3d5bca1a-f677-4775-b77b-107b2200c790",
+               "word":"Self-confident",
+               "meaning":"having trust in one's abilities and qualities"
+            },
+            {
+               "id":"b37ca54f-2cc4-43c7-bac9-e37b857c0d24",
+               "word":"Sincere",
+               "meaning":"showing what is true and honest"
+            },
+            {
+               "id":"9704854e-898e-4ac7-9efb-c19bbb2bf049",
+               "word":"Sympathetic",
+               "meaning":"showing care and understanding toward other people"
+            },
+            {
+               "id":"2e0d96f6-bf46-4be5-9269-4daf64ea907f",
+               "word":"Unreliable",
+               "meaning":"not showing enough assurance to be trusted"
+            },
+            {
+               "id":"943350e9-e812-4b5a-bd76-a2b56c41f9d7",
+               "word":"Violent",
+               "meaning":"caused by force that may result in physical damage"
+            },
+            {
+               "id":"0e21962d-6f8b-417e-b5f8-b5ea03b91a59",
+               "word":"Lenient",
+               "meaning":"howing mercy, flexibility or tolerance"
+            },
+            {
+               "id":"b0d7eaae-bb53-41bf-bd14-e5545140319e",
+               "word":"Dynamic",
+               "meaning":"having a lot of energy and new ideas"
+            },
+            {
+               "id":"e7d1a626-53a0-415e-80a1-d20377a4cb3e",
+               "word":"Respectable",
+               "meaning":"considered to be acceptable by the society"
+            },
+            {
+               "id":"f76a588b-1eba-4c3d-8197-c7f0db771f67",
+               "word":"Strong-willed",
+               "meaning":"very determined in achieving"
+            },
+            {
+               "id":"cfc38b9d-6377-4f30-8ded-6634bda3c14d",
+               "word":"Curious",
+               "meaning":"interested in learning and knowing about things"
+            },
+            {
+               "id":"e10ebeee-41ec-4a88-b1e8-53dff5674785",
+               "word":"Selfish",
+               "meaning":"always putting one's interests first and not caring about the needs or rights of others"
+            },
+            {
+               "id":"18046119-8304-4d74-b9e2-509a89b88ee1",
+               "word":"Patient",
+               "meaning":"staying calm during hard times or accepting delays without getting angry or irritated"
+            },
+            {
+               "id":"fd082190-2fc5-4b7e-9771-9af2593a9b88",
+               "word":"Keen",
+               "meaning":"learning or understating quickly"
+            },
+            {
+               "id":"03a931fc-b60a-42d4-86fd-8fdd98bcb84a",
+               "word":"Cruel",
+               "meaning":"wanting to physically or mentally harm someone"
+            },
+            {
+               "id":"f3aeb0f3-933e-4a22-b9e5-90db3eb5dc70",
+               "word":"Needy",
+               "meaning":"lacking confidence, and needing to be emotionally supported a lot"
+            },
+            {
+               "id":"2a0bc63e-7ba0-41f6-bbf5-379506ee1623",
+               "word":"Stubborn",
+               "meaning":"unwilling to change one's attitude or opinion despite good reasons"
+            },
+            {
+               "id":"22047d79-58c7-418d-9bc0-d67826017f3d",
+               "word":"Ambitious",
+               "meaning":"trying or wishing to gain great success, power, or wealth"
+            },
+            {
+               "id":"73b40379-ef40-4258-85ba-149842cf2a22",
+               "word":"Generous",
+               "meaning":"willing to freely give money, spend time, etc. with others"
+            },
+            {
+               "id":"4241893c-aa67-457f-9349-4456adf0eb98",
+               "word":"Doubtful",
+               "meaning":"uncertain or having doubts about something"
+            },
+            {
+               "id":"ffabd303-20ae-4582-974c-c590a7bad1a4",
+               "word":"Bully",
+               "meaning":"a person who likes to threaten, scare, or hurt others, particularly people who are weaker"
+            }
+         ]
+      },
+      {
+         "id":"5ffff035-994c-47e5-b46b-7a1abe1bf5db",
+         "name":"Weather",
+         "words":[
+            {
+               "id":"e5437618-4f9f-4d1c-ae4d-1c1a2d58fe37",
+               "word":"Chill",
+               "meaning":"feeling of coldness"
+            },
+            {
+               "id":"fd24ec9a-b055-4ef9-84e2-94bfc9b1fe2d",
+               "word":"Frosty",
+               "meaning":"so cold that produces frost"
+            },
+            {
+               "id":"eac31194-f53b-4d14-8574-cfc514f35844",
+               "word":"Dust storm",
+               "meaning":"wind that lifts up clouds of soil or dust"
+            },
+            {
+               "id":"09a67070-1bae-453b-85d0-d38eb6cfeba7",
+               "word":"Flood",
+               "meaning":"to become covered in water usually due to excessive rain"
+            },
+            {
+               "id":"a2d905e5-f7dc-48af-acc1-03fc3adc5460",
+               "word":"Mist ",
+               "meaning":"a thin cloud of tiny drops of water"
+            },
+            {
+               "id":"c2b23f96-d4e5-41c7-8344-5fdff570401b",
+               "word":"Rainbow",
+               "meaning":"appears in the sky after rain"
+            },
+            {
+               "id":"10eeb816-3bc9-48d7-ac80-9f818051b816",
+               "word":"Typhoon",
+               "meaning":"a tropical storm with violent winds"
+            },
+            {
+               "id":"49f2275b-ea0a-4bab-9c87-94db26757087",
+               "word":"Gloomy",
+               "meaning":"with dark clouds and dull light"
+            },
+            {
+               "id":"d2220f62-58b6-43e0-a82a-c9a1f0a0799b",
+               "word":"Shower",
+               "meaning":"a short period of rain"
+            },
+            {
+               "id":"acb1df67-364f-45a7-9b2a-e90e3fca61ff",
+               "word":"Pour",
+               "meaning":"to have heavy rain"
+            },
+            {
+               "id":"997d05fa-af3a-4a83-8344-c4d235df3475",
+               "word":"Blizzard ",
+               "meaning":"severe snowstorm with strong winds"
+            },
+            {
+               "id":"1f95802d-d40b-4dbe-86e7-8cdf71359cc0",
+               "word":"Hail",
+               "meaning":"when frozen rain falls as small balls of ice"
+            },
+            {
+               "id":"5c2e58b6-368f-49ee-a0c7-9d12aacb6398",
+               "word":"Windy",
+               "meaning":"continual wind"
+            },
+            {
+               "id":"c900be25-0b9d-4a46-8927-96d23e4a6e25",
+               "word":"Blustery",
+               "meaning":"strong gusts of wind"
+            },
+            {
+               "id":"4a2e2aad-d2da-4204-a261-3887f3b651e3",
+               "word":"Drought",
+               "meaning":"a long period with no rainfall"
+            },
+            {
+               "id":"11c51a4f-8b22-4f7d-a779-9a454c4caf8e",
+               "word":"Humid",
+               "meaning":"moisture in the air"
+            },
+            {
+               "id":"a74808ff-c835-46ae-aff3-f79975bd6e3c",
+               "word":"Puddle",
+               "meaning":"collection of rain water"
+            },
+            {
+               "id":"56890c39-364f-471d-9397-ae3d76d7e3e6",
+               "word":"Raindrop",
+               "meaning":"a single measurement of rain"
+            },
+            {
+               "id":"b70f3338-e2d2-4bee-ba70-f5dc60c2a673",
+               "word":"Scorcher",
+               "meaning":"extremely hot temperature"
+            },
+            {
+               "id":"ab39e6da-2273-4229-b135-776ec5bd48db",
+               "word":"Thunder",
+               "meaning":"a loud noise after lightning"
+            }
+         ]
+      },
+      {
+         "id":"1a367af5-1942-4026-9d81-bcc66ac6defb",
+         "name":"Feelings",
+         "words":[
+            {
+               "id":"45d0284d-4694-4dee-9739-e736d82d4b51",
+               "word":"Astonished",
+               "meaning":"feeling very surprised or impressed"
+            },
+            {
+               "id":"4dd401ed-8368-4c53-8c68-8b1803bbad27",
+               "word":"Down",
+               "meaning":"feeling unhappy or dejected"
+            },
+            {
+               "id":"098cc3be-b26f-47ad-821e-dd9a9faa7299",
+               "word":"Bitter",
+               "meaning":"refusing or unable to let go of anger "
+            },
+            {
+               "id":"2f5dcb9d-4094-4455-996a-89f1fa96f70b",
+               "word":"Cheerless",
+               "meaning":"describing smt that is cold and depressing"
+            },
+            {
+               "id":"52a42f7a-c5ed-4672-b7c5-d13c91da8872",
+               "word":"Empty",
+               "meaning":"unhappy and without any purpose"
+            },
+            {
+               "id":"f43139fc-097d-45f0-bf8a-6cd08a45c426",
+               "word":"Awkward",
+               "meaning":"making one feel uncomfortable"
+            },
+            {
+               "id":"572d35f6-f99a-4738-816e-c34d94449985",
+               "word":"Delighted",
+               "meaning":"very happy or pleased"
+            },
+            {
+               "id":"8e357de9-2bc8-46bb-9b85-968f79342b91",
+               "word":"Fascinated",
+               "meaning":"having a strong interest and curiosity in smt"
+            },
+            {
+               "id":"19af4470-cfc4-4a4a-b620-a08c958e8327",
+               "word":"Breathtaking",
+               "meaning":"arousing great excitement, surprise"
+            },
+            {
+               "id":"ae18ec51-6fb3-4d43-a2af-caf9374d4873",
+               "word":"Fearful",
+               "meaning":"showing fear or being afraid"
+            },
+            {
+               "id":"8fe4b141-04c9-48bd-9c85-c30549db411e",
+               "word":"Furious",
+               "meaning":"feeling great anger"
+            },
+            {
+               "id":"4dfd4596-91bf-4c3a-9297-df5dee3da0da",
+               "word":"Dull",
+               "meaning":"lacking in distinguishing or exceptional qualities"
+            },
+            {
+               "id":"62448560-41a1-4573-9ca3-e01d54eef697",
+               "word":"Fed up",
+               "meaning":"feeling annoyed, upset, bored with smt happening for a long time"
+            },
+            {
+               "id":"164e71f9-f97c-40e4-a690-0956073afe53",
+               "word":"Irritated",
+               "meaning":"feeling angry or annoyed"
+            },
+            {
+               "id":"492b9877-f412-41a0-9ca6-a02e1bff5d28",
+               "word":"Rage",
+               "meaning":"great anger that is hard to contain"
+            },
+            {
+               "id":"df33f567-cfeb-4673-a1a0-d819a0186b72",
+               "word":"Wonder",
+               "meaning":"feeling of admiration or surprise "
+            },
+            {
+               "id":"e5ce015c-e1b3-4976-9693-7ddcf6677a9a",
+               "word":"Thrill",
+               "meaning":"sudden feeling of pleasure"
+            },
+            {
+               "id":"56165057-719a-4bc4-b5d6-7dd96e928b5d",
+               "word":"Relief",
+               "meaning":"feeling of comfort that comes when smt annoying is gone"
+            },
+            {
+               "id":"f9b1f8f7-9f94-413a-9df6-928fe789a582",
+               "word":"Pity",
+               "meaning":"feeling of sadness"
+            },
+            {
+               "id":"7d415fb7-2fe1-46f4-a6a7-8f47d2d9a2fc",
+               "word":"To amaze",
+               "meaning":"to greatly surprise someone"
+            },
+            {
+               "id":"b841d0dc-b357-498c-94c7-7b050f6c566a",
+               "word":"To regret",
+               "meaning":"to feel disappointed about smt that has been done"
+            }
+         ]
+      },
+      {
+         "id":"b2ca14a5-b441-4ada-b9ab-87932804ed94",
+         "name":"Business",
+         "words":[
+            {
+               "id":"4648350a-b525-4e2b-89a6-2ab014678016",
+               "word":"Offer",
+               "meaning":"a sum of money that one is ready to pay for something"
+            },
+            {
+               "id":"6fbac663-48d4-419b-aabd-e4b67618ac79",
+               "word":"Agreement",
+               "meaning":" a contract between two or more people"
+            },
+            {
+               "id":"728dd1fb-a46c-4120-b45f-8b2b3e3d28ec",
+               "word":"To promote",
+               "meaning":"to move to a higher position or rank"
+            },
+            {
+               "id":"f546bfd0-000d-458c-baa8-ab9b15f27ac4",
+               "word":"Board",
+               "meaning":"a group of people with the power to make decisions for an organization or company"
+            },
+            {
+               "id":"e89de36d-fc22-4177-aed8-a41d08fb2e1c",
+               "word":"CEO",
+               "meaning":"the highest-ranking person in a company"
+            },
+            {
+               "id":"d322adc1-8d1d-4afe-bfe3-bdb563b84955",
+               "word":"Chairman",
+               "meaning":"someone who is in charge of a company, organization, etc. for a long term"
+            },
+            {
+               "id":"aafd7cc0-466a-43ec-af8d-373826fa3bc4",
+               "word":"Entrepreneur",
+               "meaning":"a person who starts a business, especially one who takes financial risks"
+            },
+            {
+               "id":"afd18dc2-77cb-4a80-a716-e6af480c1a31",
+               "word":"Draft",
+               "meaning":"a document ordering the bank to pay a specific amount of money to someone"
+            },
+            {
+               "id":"45f2f194-2046-4e85-83c8-cebfd9a9db20",
+               "word":"Incom",
+               "meaning":"the money that is regularly earned from a job or through an investment"
+            },
+            {
+               "id":"8757ee57-cf83-48ef-b6c1-0f5a4f338ea3",
+               "word":"To contract",
+               "meaning":"to enter or make an official arrangement with someone"
+            },
+            {
+               "id":"91181924-54b6-4d64-bf8d-1fb36d6139ae",
+               "word":"To found",
+               "meaning":"to create or establish an organization or place, especially by providing the finances"
+            },
+            {
+               "id":"b197ae5e-57cf-495e-80aa-862fcee90a51",
+               "word":"To fun",
+               "meaning":"to supply money for a special purpose"
+            },
+            {
+               "id":"83251a51-b3e8-4924-8c3a-c181961a7ae6",
+               "word":"To launch",
+               "meaning":"to start an organized activity or operation"
+            },
+            {
+               "id":"e7e55e14-4017-47da-ba80-270294a178d0",
+               "word":"To sponsor",
+               "meaning":"to cover the costs of a project, often in exchange for advertising"
+            },
+            {
+               "id":"b3cdcc87-42a4-4cdb-aa44-30997ef1ef17",
+               "word":"Strategy",
+               "meaning":"an organized plan made to achieve a goal"
+            },
+            {
+               "id":"40bc3a73-1f71-4b87-a0af-7877f44c2bc2",
+               "word":"Partnership",
+               "meaning":"a relationship between business partners"
+            },
+            {
+               "id":"0e8be987-2b51-43ba-bd9f-6035eb75a085",
+               "word":"Profit margin",
+               "meaning":"the difference between the earnings and the costs in a business"
+            },
+            {
+               "id":"ff89e44d-bc19-438c-8562-c05e06399e75",
+               "word":"Stockholder",
+               "meaning":"someone who holds shares and stocks in a business"
+            },
+            {
+               "id":"02bd4a55-6703-45b9-82f5-abf93e01b5ea",
+               "word":"Union",
+               "meaning":"an organization formed by workers to protect their rights and improve their working conditions"
+            },
+            {
+               "id":"670e4f65-41ac-4269-8595-c8f492492ff0",
+               "word":"Tax evasion",
+               "meaning":"the offense of not paying taxes"
+            },
+            {
+               "id":"81219178-2c53-4e51-8eb8-64c095ac88c3",
+               "word":"To come down",
+               "meaning":"to have a decrease in price, temperature, etc."
+            },
+            {
+               "id":"699f8365-6fad-42af-9f7a-92283c562c99",
+               "word":"To live on",
+               "meaning":"to have the amount of money needed to buy necessities"
+            },
+            {
+               "id":"8cb38c19-5bae-49b9-8972-93a124281b3a",
+               "word":"To pay off",
+               "meaning":"to pay the full amount owed on a debt or loan"
+            },
+            {
+               "id":"a4709ae8-afc8-4c7d-9d01-c055ec469bc1",
+               "word":"To set aside",
+               "meaning":"to keep or save money, time, etc. for a specific purpose"
+            },
+            {
+               "id":"9c1b9691-464b-441e-9e5b-03a2a03e5e03",
+               "word":"Fee",
+               "meaning":"the money that is paid to a professional or an organization for their services"
+            },
+            {
+               "id":"4631f4fa-f4be-4d5b-b335-9c265fc201e5",
+               "word":"Lending",
+               "meaning":"the act of giving money to someone or something and expecting it to be returned"
+            },
+            {
+               "id":"9469910c-f809-40f0-9058-53f1c5ab05ae",
+               "word":"Refund",
+               "meaning":"an amount of money that is paid back because of returning goods to a store or one overpaying for something"
+            },
+            {
+               "id":"2cc1f522-5de2-4a9a-83dc-cb13c40261f3",
+               "word":"Senior",
+               "meaning":"of a high or higher status or rank than someone else"
+            },
+            {
+               "id":"e3690b37-23d3-478b-9076-afb7c66c8de3",
+               "word":"Junior",
+               "meaning":"low or lower in rank than someone"
+            }
+         ]
+      },
+      {
+         "id":"e4c8b20a-aa01-4f46-a1bf-5a9d79779848",
+         "name":"Obligation",
+         "words":[
+            {
+               "id":"fd4a7381-e462-4d97-a185-41552324d9d5",
+               "word":"To acknowledge",
+               "meaning":"to openly accept something as true or real"
+            },
+            {
+               "id":"c81f3f74-7700-4c43-84d9-ffbc78c4d3a3",
+               "word":"To aid",
+               "meaning":"to help or support others in doing something"
+            },
+            {
+               "id":"c21c343a-fe91-4c7e-9351-25be35e76f14",
+               "word":"Age limit",
+               "meaning":"a rule that prevents people of certain age from doing specific activities"
+            },
+            {
+               "id":"e0a3f188-8ece-4aa4-a678-a158a530e0cc",
+               "word":"Ban",
+               "meaning":"an official rule that forbids someone to do something"
+            },
+            {
+               "id":"b7ff08cf-44c1-4f4a-88f5-816e4d2cd831",
+               "word":"To bar",
+               "meaning":"to not allow someone to do something or to prevent them from going somewhere"
+            },
+            {
+               "id":"74f84068-2f28-4756-a24d-c00479606347",
+               "word":"Condition",
+               "meaning":"a rule or term that must be met "
+            },
+            {
+               "id":"cabb53e6-dbeb-4b76-8c55-42b9b17c3d7d",
+               "word":"To demand",
+               "meaning":"to ask something from someone in an urgent and forceful manner"
+            },
+            {
+               "id":"cdca145a-305d-4b19-b33c-f5c5bf72aacd",
+               "word":"To enable",
+               "meaning":"to give someone or something the means or ability to do something"
+            },
+            {
+               "id":"aed1e4d0-a39f-4166-b7f6-8112a632b6e2",
+               "word":"Exception",
+               "meaning":"a person or thing that does not follow a general rule "
+            },
+            {
+               "id":"a84dcd3c-e79d-493a-9e8e-729460253619",
+               "word":"Guideline",
+               "meaning":"a set of instructions based on which a person should act"
+            },
+            {
+               "id":"2d4e57d4-1663-4a38-8e4d-374e6a89ad3b",
+               "word":"To permit",
+               "meaning":"to allow someone to do something"
+            },
+            {
+               "id":"67c322b0-b096-49f0-be14-8f6469060a4c",
+               "word":"Requirement",
+               "meaning":"something that is really needed or wanted"
+            },
+            {
+               "id":"01e8204b-ffea-4ef1-a406-b98194efbd95",
+               "word":"To restrict",
+               "meaning":"to put someone or something under control by laws and rules"
+            },
+            {
+               "id":"982ca2c6-6c79-42fe-b7cb-51762f2b4810",
+               "word":"To forbid",
+               "meaning":"to not give permission"
+            },
+            {
+               "id":"15a7c073-e5b3-4a33-9826-f764b0e220d1",
+               "word":"To grant",
+               "meaning":"to let someone have something that they have requested"
+            },
+            {
+               "id":"c2864f43-7593-4145-8e31-8e42c8b296af",
+               "word":"Compulsory",
+               "meaning":"forced to be done by law or authority"
+            },
+            {
+               "id":"dc688531-cd64-4d49-9d43-a20ccc915df6",
+               "word":"Mandatory",
+               "meaning":"ordered or required by a rule or law"
+            },
+            {
+               "id":"97d09bf9-c889-4a91-9075-4a7278777f27",
+               "word":"To impose",
+               "meaning":"to force someone to do what they do not want"
+            },
+            {
+               "id":"e185f234-0422-49a9-bc64-5e3fc0ad51a1",
+               "word":"To insist",
+               "meaning":"to urgently demand someone to accept to do something"
+            },
+            {
+               "id":"53158832-c58d-4ce9-aebc-429035fb2606",
+               "word":"To beg",
+               "meaning":"to ask humbly for something, especially when one needs or desires that thing a lot"
+            },
+            {
+               "id":"7a7ed425-5fab-4183-946e-153e9caf0fec",
+               "word":"To get rid of ",
+               "meaning":"to put aside or remove a person or thing that one no longer wants"
+            }
+         ]
+      },
+      {
+         "id":"8bff8186-8685-4cbb-8fc0-50fe5ab3d5f8",
+         "name":"Certainty and doubt",
+         "words":[
+            {
+               "id":"ca84bc79-d973-43c2-af7d-1214344af8a5",
+               "word":"To assure",
+               "meaning":"to make someone sure about someone or something"
+            },
+            {
+               "id":"51360113-f36b-4c59-8cf4-9d345ef44570",
+               "word":"To bet",
+               "meaning":"used to express that one is sure about something or thinks that something is very likely"
+            },
+            {
+               "id":"206d7ea1-19a1-4067-9e4b-81bb58a8ed4c",
+               "word":"To ensure",
+               "meaning":"to make sure that something will happen"
+            },
+            {
+               "id":"2aed8736-12ee-465c-a235-ceebfdeb3cc9",
+               "word":"To forecast",
+               "meaning":"to predict the coming events, based on the existing information"
+            },
+            {
+               "id":"dda4661b-8b16-4ad3-9c58-273caff715fe",
+               "word":"To guarantee",
+               "meaning":"to make sure that something will occur"
+            },
+            {
+               "id":"0260b95d-3dc3-43a4-93bf-808476b95749",
+               "word":"To hesitate",
+               "meaning":"to pause before saying or doing something because of uncertainty or nervousness"
+            },
+            {
+               "id":"582618e3-5a92-4501-9baa-26caa7893c3b",
+               "word":"Ought to",
+               "meaning":"used to talk about what one expects or likes to happen"
+            },
+            {
+               "id":"28864b3e-e576-49b7-8bfd-5a961ed6b011",
+               "word":"To recall",
+               "meaning":"to bring back something from the memory"
+            },
+            {
+               "id":"8d86f33c-aa44-4195-a5bc-bee15eed3013",
+               "word":"To suspect",
+               "meaning":"to think that something is probably true, especially something bad, without having proof"
+            },
+            {
+               "id":"8a077892-e397-4cc4-bd6c-93993de48b99",
+               "word":"Bound",
+               "meaning":"likely to happen or sure to experience something"
+            },
+            {
+               "id":"a7000288-c225-4363-a9de-3414353b17d9",
+               "word":"Sure",
+               "meaning":"describing something that will happen or be received certainly"
+            },
+            {
+               "id":"7bdec253-14cb-454b-b17c-b6992750fcea",
+               "word":"Convinced",
+               "meaning":"having a strong belief in something or being certain about it"
+            },
+            {
+               "id":"49f0358c-d734-4b5a-ae5b-b66cbec7c8b5",
+               "word":"Expected",
+               "meaning":"considered to be probable or possible to happen"
+            },
+            {
+               "id":"5ef322e5-d79e-49af-b3c3-b6aced2e9f26",
+               "word":"Inevitable",
+               "meaning":"bound to happen in a way that is impossible to avoid or prevent"
+            },
+            {
+               "id":"2fd5b0ad-cfac-4988-8eef-7c2e861642af",
+               "word":"Rash",
+               "meaning":"done without carefully considering what might happen"
+            },
+            {
+               "id":"3618b311-925f-442f-a69c-ca075cc29d00",
+               "word":"Uncertain",
+               "meaning":"showing a lack of confidence and having doubts about something"
+            },
+            {
+               "id":"bcb83597-d2dd-43fd-9fd2-3e543f6a7e5d",
+               "word":"Unclear",
+               "meaning":"not easy to understand"
+            },
+            {
+               "id":"3113ca2a-db05-4330-9dd8-9cb0404fbe87",
+               "word":"No doubt",
+               "meaning":"used to say that something is likely to happen or is true"
+            },
+            {
+               "id":"0f9f5230-9177-4598-8661-0efb9627609a",
+               "word":"Confidence",
+               "meaning":"the belief that one can trust or count on someone or something"
+            },
+            {
+               "id":"c14c4456-8889-4f01-ad6c-51b206726fa0",
+               "word":"Confusion",
+               "meaning":"a state of disorder in which people panic and do not know what to do"
+            },
+            {
+               "id":"1a5d8921-0005-4b5a-8d9e-a084646f7d60",
+               "word":"To deceive",
+               "meaning":"to make a person believe something untrue"
+            },
+            {
+               "id":"dbcac171-f70f-413b-8bf0-51cdfba70efd",
+               "word":"Somehow",
+               "meaning":"in a way or by some method that is not known or certain"
+            },
+            {
+               "id":"67fe4423-844f-41ca-b63c-2a77d6bc597a",
+               "word":"You bet",
+               "meaning":"used to show that someone has made a good suggestion or guess"
+            },
+            {
+               "id":"0228e111-5da3-4168-923c-86946c73e798",
+               "word":"To go back on a promise / deal ",
+               "meaning":"to fail to keep or fulfill a commitment made to someone"
+            },
+            {
+               "id":"550f67ad-9bc3-4bc8-84de-f7529c65517d",
+               "word":"Bulletproof",
+               "meaning":"guaranteed to work or bring success; lacking any flaws"
+            },
+            {
+               "id":"ac0dce29-f748-403c-8701-47692cb86383",
+               "word":"Odds",
+               "meaning":"the probabilities or chances of something actually taking place"
+            },
+            {
+               "id":"61100286-05c4-4bc8-817e-beeef777856a",
+               "word":"In stone",
+               "meaning":"in a way that is not possible to be changed"
+            },
+            {
+               "id":"7e54c843-7348-4b97-96ce-8f846b47bae6",
+               "word":"To palm off",
+               "meaning":"to dispose of something by giving or selling it to someone else via persuasion or deception"
+            },
+            {
+               "id":"d76575af-a8af-4a98-91cc-85084f8796b2",
+               "word":"To go back on one's word",
+               "meaning":"to fail to keep a promise or commitment that was previously made"
+            },
+            {
+               "id":"eff406eb-6cfe-4912-bfbe-c396f9a5bcc0",
+               "word":"To  question",
+               "meaning":"to have or express uncertainty about something"
+            }
+         ]
+      },
+      {
+         "id":"a251326f-9f1b-4f8a-b7ae-1c5a1567d690",
+         "name":"Сompliments",
+         "words":[
+            {
+               "id":"35ca8c69-676d-415d-b158-5311e036e5ed",
+               "word":"Radiant",
+               "meaning":"You shine with a bright and warm light, captivating everyone around you"
+            },
+            {
+               "id":"f8a85162-bd12-4f9c-ab26-dd61ed097e0e",
+               "word":"Captivating",
+               "meaning":"You have a magnetic quality that draws people in, making it hard to look away"
+            },
+            {
+               "id":"c3255c14-07dc-4b52-8284-c6b75dda92bd",
+               "word":"Cheerful",
+               "meaning":"Your happiness is contagious, bringing joy to those around you"
+            },
+            {
+               "id":"72215ad5-85de-4e6c-a8c2-df5c9625ef63",
+               "word":"Kind-hearted",
+               "meaning":"Your compassion and generosity make the world a better place"
+            },
+            {
+               "id":"396f8cdb-b5c3-4fa5-8247-0da1d86b0277",
+               "word":"Stylish",
+               "meaning":"Your fashion sense is on point, and you always look effortlessly chic"
+            },
+            {
+               "id":"cd40c8da-f377-46af-a121-b1f53a92ffe9",
+               "word":"Gracious",
+               "meaning":"Your polite and courteous manner makes interactions enjoyable"
+            },
+            {
+               "id":"c3bcc3b1-54a1-41c5-ad0c-aa76f9a1974b",
+               "word":"Sweet",
+               "meaning":"Your kind and gentle nature is like a breath of fresh air"
+            },
+            {
+               "id":"d9100239-38fa-44cb-b406-19b763df4ac9",
+               "word":"Funny",
+               "meaning":"Your sense of humor brings laughter and lightens the mood"
+            },
+            {
+               "id":"d05040c2-9735-48d4-b8ee-6bdf4be6dfaf",
+               "word":"Pleasant",
+               "meaning":"Your company is always enjoyable, creating positive experiences"
+            },
+            {
+               "id":"341115d8-ef61-42d8-bc98-7a3d21eccdc2",
+               "word":"Easygoing",
+               "meaning":"Your laid-back attitude makes you approachable and easy to connect with"
+            },
+            {
+               "id":"57a7c290-1829-4775-b2f9-051aabd52d2b",
+               "word":"Courageous",
+               "meaning":"Your bravery and resilience in facing challenges are commendable"
+            },
+            {
+               "id":"1752b9e1-1cb7-40a5-8597-2a6f53d4ea00",
+               "word":"Caring",
+               "meaning":"Your concern for others' well-being is heartwarming and comforting"
+            },
+            {
+               "id":"baebbd13-46b2-4072-9422-bb99d1715f09",
+               "word":"Humble",
+               "meaning":"Your modesty and humility make you genuinely admirable"
+            }
+         ]
+      }
+   ]
+}
