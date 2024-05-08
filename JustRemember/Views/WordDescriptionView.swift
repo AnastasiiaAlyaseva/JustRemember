@@ -36,6 +36,7 @@ struct WordDescriptionView: View {
                 }
             }
         }
+        .accessibilityIdentifier("WordsViewIdentifier")
     }
 }
 

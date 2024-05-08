@@ -4,6 +4,7 @@ struct TopicsView: View {
     let words: [Word]
     let topicName: String
     
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -20,6 +21,7 @@ struct TopicsView: View {
             .navigationTitle(topicName)
             .toolbarBackground(Color.toolBarColor, for: .navigationBar)
         }
+        .accessibilityIdentifier("TopicsViewIdentifier")
     }
 }
 

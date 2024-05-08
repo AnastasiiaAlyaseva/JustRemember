@@ -188,12 +188,12 @@
 				B5062C312A6FE9BB00D1BB0B /* HomeView.swift */,
 				B5F763BA2A731610009342FE /* TopicsView.swift */,
 				B5062C402A70182C00D1BB0B /* CardView.swift */,
-				B5F763C12A754F92009342FE /* GradientView.swift */,
 				B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */,
 				B5BC819C2A7A81EA003D1104 /* SettingsView.swift */,
 				B50F14152AA77E2700FF8B9D /* SupportEmailButton.swift */,
 				B5153CDC2A8504EF005CB59F /* LoaderAnimationView.swift */,
 				B542CDB42A9E58D100F57B8E /* AppearanceView.swift */,
+				B5F763C12A754F92009342FE /* GradientView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

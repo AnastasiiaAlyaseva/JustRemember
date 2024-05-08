@@ -33,6 +33,7 @@ struct HomeView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
+                    .accessibilityIdentifier("SettingsViewButtonIdentifier")
             }
             )
         }
