@@ -44,7 +44,6 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(appearanceSelection.exists)
         XCTAssertTrue(appearanceSelection.isEnabled)
         appearanceSelection.tap()
-        
     }
     
     func testNavigationToWordDescription() throws {
@@ -66,7 +65,6 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(topicsView.exists)
         XCTAssertTrue(wordIdentifier.exists)
         wordIdentifier.tap()
-        
         
         let imageWordsView = app.images["ImageIdentifier"]
         let wordTitle = app.staticTexts["WordTitleIdentifier"]
