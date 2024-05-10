@@ -14,18 +14,21 @@ struct WordDescriptionView: View {
                         .resizable()
                         .scaledToFit()
                         .blur(radius: 0.5)
+                        .accessibilityIdentifier("ImageIdentifier")
                     
                     HStack{
                         Text(title)
                             .font(.system(.title, design: .rounded))
                             .fontWeight(.black)
                             .accentColor(.label)
+                            .accessibilityIdentifier("WordTitleIdentifier")
                         
                         Text("-")
                             .accentColor(.label)
                         Text(subtitle)
                             .font(.system(size: 20))
                             .accentColor(.label)
+                            .accessibilityIdentifier("WordSubtitleIdentifier")
                     }
                     
                     Text(description)
@@ -36,7 +39,6 @@ struct WordDescriptionView: View {
                 }
             }
         }
-        .accessibilityIdentifier("WordsViewIdentifier")
     }
 }
 

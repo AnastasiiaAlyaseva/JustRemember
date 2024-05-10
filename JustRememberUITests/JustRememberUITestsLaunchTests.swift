@@ -1,9 +1,3 @@
-//
-//  JustRememberUITestsLaunchTests.swift
-//  JustRememberUITests
-//
-//  Created by Anastasiia Alyaseva on 07.05.2024.
-//
 
 import XCTest
 

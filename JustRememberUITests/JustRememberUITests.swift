@@ -4,7 +4,6 @@ import XCTest
 
 final class JustRememberUITests: XCTestCase {
     
-    
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
@@ -68,14 +67,12 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(wordIdentifier.exists)
         wordIdentifier.tap()
         
-    }
-    
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        
+        let imageWordsView = app.images["ImageIdentifier"]
+        let wordTitle = app.staticTexts["WordTitleIdentifier"]
+        let wordSubtitle = app.staticTexts["WordSubtitleIdentifier"]
+        XCTAssertTrue(imageWordsView.exists)
+        XCTAssertTrue(wordTitle.exists)
+        XCTAssertTrue(wordSubtitle.exists)
     }
 }
