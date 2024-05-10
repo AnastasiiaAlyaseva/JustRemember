@@ -4,7 +4,6 @@ import XCTest
 
 final class JustRememberTests: XCTestCase {
     
-    
     func testCollectionListJsonMapping() throws {
         // given
         let vocabularyData : NetworkResponse = Bundle.main.decode("vocabularyData.json")
@@ -20,12 +19,4 @@ final class JustRememberTests: XCTestCase {
         XCTAssertEqual(collections.first?.words.last?.word, "Bully")
         XCTAssertEqual(collections.first?.words.last?.meaning, "a person who likes to threaten, scare, or hurt others, particularly people who are weaker")
     }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
