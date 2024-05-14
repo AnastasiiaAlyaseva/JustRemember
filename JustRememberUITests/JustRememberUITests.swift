@@ -3,19 +3,19 @@
 import XCTest
 
 final class JustRememberUITests: XCTestCase {
+    let app = XCUIApplication()
     
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launch()
     }
     
     func testNavigateToSettingsView() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         // given
-        let profileButton = app.buttons["SettingsViewButtonIdentifier"]
-        let settingsViewScreen = app.collectionViews["SettingsViewIdentifier"]
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
         let settingsViewScreenTitle = app.navigationBars["Settings"]
         
         // then
@@ -24,14 +24,11 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(settingsViewScreen.exists)
         XCTAssertTrue(settingsViewScreenTitle.exists)
     }
-    
+
     func testSetAppearance() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         // given
-        let profileButton = app.buttons["SettingsViewButtonIdentifier"]
-        let appearanceSettings = app.buttons["AppearanceIdentifier"]
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let appearanceSettings = app.buttons[Accessibility.SettingsView.appearanceIdentifier]
         let appearanceSelection  = app.buttons["Dark Mode"]
         let appearanceViewScreenTitle = app.navigationBars["Appearance"]
         
@@ -47,9 +44,6 @@ final class JustRememberUITests: XCTestCase {
     }
     
     func testNavigationToWordDescription() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
         let startViewScreenTitle = app.navigationBars["Topics"]
         XCTAssertTrue(startViewScreenTitle.exists)
         
@@ -61,14 +55,14 @@ final class JustRememberUITests: XCTestCase {
         topicIdentifier.tap()
         
         let wordIdentifier = elementsQuery.buttons.firstMatch
-        let topicsView = app.scrollViews["TopicsViewIdentifier"].firstMatch
+        let topicsView = app.scrollViews[Accessibility.TopicsView.topicsViewIdentifier].firstMatch
         XCTAssertTrue(topicsView.exists)
         XCTAssertTrue(wordIdentifier.exists)
         wordIdentifier.tap()
         
-        let imageWordsView = app.images["ImageIdentifier"]
-        let wordTitle = app.staticTexts["WordTitleIdentifier"]
-        let wordSubtitle = app.staticTexts["WordSubtitleIdentifier"]
+        let imageWordsView = app.images[Accessibility.WordDescriptionView.wordImageIdentifier]
+        let wordTitle = app.staticTexts[Accessibility.WordDescriptionView.wordTitleIdentifier]
+        let wordSubtitle = app.staticTexts[Accessibility.WordDescriptionView.wordSubtitleIdentifier]
         XCTAssertTrue(imageWordsView.exists)
         XCTAssertTrue(wordTitle.exists)
         XCTAssertTrue(wordSubtitle.exists)

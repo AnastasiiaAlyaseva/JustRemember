@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HomeView: View {
+struct HomeView: View {    
     @StateObject private var storage = Storage()
     
     private var networkClient: NetworkClient {
@@ -33,7 +33,7 @@ struct HomeView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                    .accessibilityIdentifier("SettingsViewButtonIdentifier")
+                    .accessibilityIdentifier(Accessibility.HomeView.settingsViewButton)
             }
             )
         }

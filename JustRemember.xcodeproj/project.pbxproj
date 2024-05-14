@@ -28,6 +28,8 @@
 		B542CDB72A9E5ACE00F57B8E /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B542CDB62A9E5ACE00F57B8E /* Appearance.swift */; };
 		B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */; };
 		B54CDE902A826E7E002F2AAB /* AppInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CDE8F2A826E7E002F2AAB /* AppInfoProvider.swift */; };
+		B55B2DAF2BF36E0D00212B9A /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55B2DAE2BF36E0D00212B9A /* Accessibility.swift */; };
+		B55B2DB02BF36E3C00212B9A /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55B2DAE2BF36E0D00212B9A /* Accessibility.swift */; };
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
 		B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */; };
 		B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819C2A7A81EA003D1104 /* SettingsView.swift */; };
@@ -74,6 +76,7 @@
 		B542CDB62A9E5ACE00F57B8E /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		B54CDE8D2A7E91DC002F2AAB /* NotificationReapeatInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReapeatInterval.swift; sourceTree = "<group>"; };
 		B54CDE8F2A826E7E002F2AAB /* AppInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoProvider.swift; sourceTree = "<group>"; };
+		B55B2DAE2BF36E0D00212B9A /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
 		B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5BC819C2A7A81EA003D1104 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		B5062C2E2A6FE9BB00D1BB0B /* JustRemember */ = {
 			isa = PBXGroup;
 			children = (
+				B55B2DAD2BF36DF800212B9A /* UITestHelpers */,
 				B5062C2F2A6FE9BB00D1BB0B /* JustRememberApp.swift */,
 				B5F763C02A754E02009342FE /* Views */,
 				B5F763BF2A754DDF009342FE /* Services */,
@@ -151,6 +155,14 @@
 				B53683492BEA6AB100345071 /* JustRememberUITestsLaunchTests.swift */,
 			);
 			path = JustRememberUITests;
+			sourceTree = "<group>";
+		};
+		B55B2DAD2BF36DF800212B9A /* UITestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				B55B2DAE2BF36E0D00212B9A /* Accessibility.swift */,
+			);
+			path = UITestHelpers;
 			sourceTree = "<group>";
 		};
 		B5F763BE2A754D80009342FE /* Models */ = {
@@ -324,6 +336,7 @@
 				B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */,
 				B54CDE8E2A7E91DC002F2AAB /* NotificationReapeatInterval.swift in Sources */,
 				B5062C302A6FE9BB00D1BB0B /* JustRememberApp.swift in Sources */,
+				B55B2DAF2BF36E0D00212B9A /* Accessibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53683482BEA6AB100345071 /* JustRememberUITests.swift in Sources */,
+				B55B2DB02BF36E3C00212B9A /* Accessibility.swift in Sources */,
 				B536834A2BEA6AB100345071 /* JustRememberUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +457,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
