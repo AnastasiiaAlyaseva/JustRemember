@@ -20,4 +20,14 @@ struct Accessibility {
         static let wordTitleIdentifier = "WordTitleIdentifier"
         static let wordSubtitleIdentifier = "WordSubtitleIdentifier"
     }
+    
+    struct AppearanceView {
+        static let darkMode = "DarkModeIdentifier.Button"
+        static let lightMode = "LightModeIdentifier.Button"
+        static let systemMode = "SameAsDeviceSetting.Button"
+    }
+    
+    struct ImageView {
+        static let imageViewIdentifier = "checkmark"
+    }
 }

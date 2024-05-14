@@ -24,13 +24,17 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(settingsViewScreen.exists)
         XCTAssertTrue(settingsViewScreenTitle.exists)
     }
-
+    
     func testSetAppearance() throws {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let appearanceSettings = app.buttons[Accessibility.SettingsView.appearanceIdentifier]
-        let appearanceSelection  = app.buttons["Dark Mode"]
         let appearanceViewScreenTitle = app.navigationBars["Appearance"]
+        let appearanceSelectionCellLightMode  = app.buttons[Accessibility.AppearanceView.lightMode]
+        let appearanceSelectionCellDarkMode  = app.buttons[Accessibility.AppearanceView.darkMode]
+        let appearanceSelectionCellSystemMode  = app.buttons[Accessibility.AppearanceView.systemMode]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        let imageViewIdentifier = Accessibility.ImageView.imageViewIdentifier
         
         // then
         XCTAssertTrue(profileButton.exists)
@@ -38,9 +42,23 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(appearanceSettings.exists)
         appearanceSettings.tap()
         XCTAssertTrue(appearanceViewScreenTitle.exists)
-        XCTAssertTrue(appearanceSelection.exists)
-        XCTAssertTrue(appearanceSelection.isEnabled)
-        appearanceSelection.tap()
+        XCTAssertTrue(appearanceSelectionCellDarkMode.exists)
+        XCTAssertTrue(appearanceSelectionCellDarkMode.isEnabled)
+        
+        appearanceSelectionCellDarkMode.tap()
+        XCTAssertTrue(appearanceSelectionCellDarkMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellLightMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellSystemMode.images[imageViewIdentifier].exists)
+        
+        appearanceSelectionCellLightMode.tap()
+        XCTAssertTrue(appearanceSelectionCellLightMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellDarkMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellSystemMode.images[imageViewIdentifier].exists)
+        
+        appearanceSelectionCellSystemMode.tap()
+        XCTAssertTrue(appearanceSelectionCellSystemMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellDarkMode.images[imageViewIdentifier].exists)
+        XCTAssertFalse(appearanceSelectionCellLightMode.images[imageViewIdentifier].exists)
     }
     
     func testNavigationToWordDescription() throws {
@@ -54,11 +72,11 @@ final class JustRememberUITests: XCTestCase {
         waitForExpectations(timeout: 10, handler: nil)
         topicIdentifier.tap()
         
-        let wordIdentifier = elementsQuery.buttons.firstMatch
+        let wordElement = elementsQuery.buttons.firstMatch
         let topicsView = app.scrollViews[Accessibility.TopicsView.topicsViewIdentifier].firstMatch
         XCTAssertTrue(topicsView.exists)
-        XCTAssertTrue(wordIdentifier.exists)
-        wordIdentifier.tap()
+        XCTAssertTrue(wordElement.exists)
+        wordElement.tap()
         
         let imageWordsView = app.images[Accessibility.WordDescriptionView.wordImageIdentifier]
         let wordTitle = app.staticTexts[Accessibility.WordDescriptionView.wordTitleIdentifier]
