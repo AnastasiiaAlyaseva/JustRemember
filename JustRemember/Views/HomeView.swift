@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HomeView: View {    
+struct HomeView: View {
     @StateObject private var storage = Storage()
     
     private var networkClient: NetworkClient {

@@ -15,7 +15,7 @@ struct AppearanceView: View {
                             Spacer()
                             if appearance == selectedAppearance {
                                 Image(systemName: "checkmark")
-                                    .accessibilityIdentifier(Accessibility.ImageView.imageViewIdentifier)
+                                    .accessibilityIdentifier(Accessibility.AppearanceView.imageViewIdentifier)
                             }
                         }
                     }.accessibilityIdentifier(appearance.accesibilityIndetifier)

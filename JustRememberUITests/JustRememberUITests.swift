@@ -34,16 +34,21 @@ final class JustRememberUITests: XCTestCase {
         let appearanceSelectionCellDarkMode  = app.buttons[Accessibility.AppearanceView.darkMode]
         let appearanceSelectionCellSystemMode  = app.buttons[Accessibility.AppearanceView.systemMode]
         let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
-        let imageViewIdentifier = Accessibility.ImageView.imageViewIdentifier
+        let imageViewIdentifier = Accessibility.AppearanceView.imageViewIdentifier
         
         // then
         XCTAssertTrue(profileButton.exists)
         profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
         XCTAssertTrue(appearanceSettings.exists)
         appearanceSettings.tap()
         XCTAssertTrue(appearanceViewScreenTitle.exists)
         XCTAssertTrue(appearanceSelectionCellDarkMode.exists)
         XCTAssertTrue(appearanceSelectionCellDarkMode.isEnabled)
+        XCTAssertTrue(appearanceSelectionCellLightMode.exists)
+        XCTAssertTrue(appearanceSelectionCellLightMode.isEnabled)
+        XCTAssertTrue(appearanceSelectionCellSystemMode.exists)
+        XCTAssertTrue(appearanceSelectionCellSystemMode.isEnabled)
         
         appearanceSelectionCellDarkMode.tap()
         XCTAssertTrue(appearanceSelectionCellDarkMode.images[imageViewIdentifier].exists)
