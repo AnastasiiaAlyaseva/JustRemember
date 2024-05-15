@@ -15,9 +15,10 @@ struct AppearanceView: View {
                             Spacer()
                             if appearance == selectedAppearance {
                                 Image(systemName: "checkmark")
+                                    .accessibilityIdentifier(Accessibility.AppearanceView.imageViewIdentifier)
                             }
                         }
-                    }
+                    }.accessibilityIdentifier(appearance.accesibilityIndetifier)
                 }
             }
             .accentColor(.label)

@@ -39,6 +39,17 @@
                ReferencedContainer = "container:JustRemember.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B53683442BEA6AB000345071"
+               BuildableName = "JustRememberUITests.xctest"
+               BlueprintName = "JustRememberUITests"
+               ReferencedContainer = "container:JustRemember.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

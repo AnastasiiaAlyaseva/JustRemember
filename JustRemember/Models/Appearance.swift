@@ -15,4 +15,15 @@ enum Appearance: String, CaseIterable {
             return "Same as Device Setting"
         }
     }
+    
+    var accesibilityIndetifier: String {
+        switch self {
+        case .dark:
+            return Accessibility.AppearanceView.darkMode
+        case .light:
+            return Accessibility.AppearanceView.lightMode
+        case .system:
+            return Accessibility.AppearanceView.systemMode
+        }
+    }
 }

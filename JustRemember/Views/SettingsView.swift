@@ -90,6 +90,7 @@ struct SettingsView: View {
                 Section(header: Text("Appearance")) {
                     NavigationLink("Appearance", destination: AppearanceView())
                 }
+                .accessibilityIdentifier(Accessibility.SettingsView.appearanceIdentifier)
             }
             .navigationTitle("Settings")
             .onAppear {
@@ -124,6 +125,7 @@ struct SettingsView: View {
                 .foregroundColor(.gray)
         }
         .accentColor(.systemBlue)
+        .accessibilityIdentifier(Accessibility.SettingsView.settingsViewIdentifier)
     }
     
     private func checkNotificationsPermissions() {

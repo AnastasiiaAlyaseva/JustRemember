@@ -20,6 +20,7 @@ struct TopicsView: View {
             .navigationTitle(topicName)
             .toolbarBackground(Color.toolBarColor, for: .navigationBar)
         }
+        .accessibilityIdentifier(Accessibility.TopicsView.topicsViewIdentifier)
     }
 }
 
