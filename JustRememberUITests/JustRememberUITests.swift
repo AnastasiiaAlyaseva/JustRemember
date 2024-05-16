@@ -90,4 +90,22 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(wordTitle.exists)
         XCTAssertTrue(wordSubtitle.exists)
     }
+    func testScheduleNotification() throws {
+        // given
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let notificationsToggle = app.switches["Notifications"]
+        XCTAssertTrue(notificationsToggle.exists)
+        notificationsToggle.tap()
+        
+        let doNotDisturbToggle = app.switches["Do not disturb"]
+        XCTAssertTrue(doNotDisturbToggle.exists)
+        doNotDisturbToggle.tap()
+        
+    }
 }
