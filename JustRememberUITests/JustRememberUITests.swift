@@ -99,13 +99,22 @@ final class JustRememberUITests: XCTestCase {
         profileButton.tap()
         XCTAssertTrue(settingsViewScreen.exists)
         
-        let notificationsToggle = app.switches["Notifications"]
+        let notificationsToggle = app.switches["NotificationsIdentifier"]
         XCTAssertTrue(notificationsToggle.exists)
-        notificationsToggle.tap()
+        XCTAssertTrue(notificationsToggle.isEnabled)
+        notificationsToggle.switches.firstMatch.tap()
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
         
-        let doNotDisturbToggle = app.switches["Do not disturb"]
+        let doNotDisturbToggle = app.switches["DoNotDisturbIdentifier"]
         XCTAssertTrue(doNotDisturbToggle.exists)
-        doNotDisturbToggle.tap()
+        XCTAssertTrue(doNotDisturbToggle.isEnabled)
+        doNotDisturbToggle.switches.firstMatch.tap()
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
         
+        let scheduleButton = app.buttons["Remember random words"]
+        XCTAssertTrue(scheduleButton.exists)
+        XCTAssertTrue(scheduleButton.isEnabled)
+        scheduleButton.tap()
+       
     }
 }

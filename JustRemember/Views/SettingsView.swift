@@ -46,7 +46,6 @@ struct SettingsView: View {
                                     .foregroundColor(.gray)
                             } else {
                                 DatePicker("Start date:", selection: $notificationsStartDate, in: Date()...)
-                                
                                 Picker("Reapeat interval", selection: $notificationRepeatInterval) {
                                     ForEach(NotificationReapeatInterval.allCases, id:\.self) { interval in
                                         Text(interval.name).tag(interval)
@@ -74,6 +73,8 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    .accessibilityIdentifier("NotificationsIdentifier")
+                
                 Section(header: Text("Do not disturb"),
                         footer: Text(isDoNotDisturbEnabled ? doNotDisturbHintText(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate) : "")
                     .font(.footnote)
@@ -86,6 +87,7 @@ struct SettingsView: View {
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
                     }
                 }.disabled(notificationCount > 0)
+                    .accessibilityIdentifier("DoNotDisturbIdentifier")
                 
                 Section(header: Text("Appearance")) {
                     NavigationLink("Appearance", destination: AppearanceView())
