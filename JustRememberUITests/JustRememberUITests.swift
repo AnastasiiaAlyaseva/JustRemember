@@ -1,5 +1,3 @@
-
-
 import XCTest
 
 final class JustRememberUITests: XCTestCase {
@@ -90,6 +88,7 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(wordTitle.exists)
         XCTAssertTrue(wordSubtitle.exists)
     }
+    
     func testScheduleNotification() throws {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
@@ -99,22 +98,44 @@ final class JustRememberUITests: XCTestCase {
         profileButton.tap()
         XCTAssertTrue(settingsViewScreen.exists)
         
-        let notificationsToggle = app.switches["NotificationsIdentifier"]
+        let notificationsToggle = app.switches[Accessibility.SettingsView.notificationsToggleIdentifier]
         XCTAssertTrue(notificationsToggle.exists)
         XCTAssertTrue(notificationsToggle.isEnabled)
-        notificationsToggle.switches.firstMatch.tap()
+        
+        // https://forums.developer.apple.com/forums/thread/737880
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let allowButton = springboard.buttons["Allow"].firstMatch
+        if allowButton.exists {
+            allowButton.tap()
+        } else {
+            notificationsToggle.switches.firstMatch.tap()
+        }
         XCTAssertTrue(notificationsToggle.value as? String == "1")
         
-        let doNotDisturbToggle = app.switches["DoNotDisturbIdentifier"]
+        let doNotDisturbToggle = app.switches[Accessibility.SettingsView.doNotDisturbToggleIdentifier]
         XCTAssertTrue(doNotDisturbToggle.exists)
         XCTAssertTrue(doNotDisturbToggle.isEnabled)
         doNotDisturbToggle.switches.firstMatch.tap()
         XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
         
-        let scheduleButton = app.buttons["Remember random words"]
+        let scheduleButton = app.buttons[Accessibility.SettingsView.rememberRandomWordsIdentifier]
         XCTAssertTrue(scheduleButton.exists)
         XCTAssertTrue(scheduleButton.isEnabled)
         scheduleButton.tap()
        
+        let text = app.staticTexts["64 notifications remaining"].firstMatch
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: text, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
+        XCTAssertFalse(doNotDisturbToggle.isEnabled)
+        // from visible
+        // to visible
+
+        // reset state
+        notificationsToggle.switches.firstMatch.tap()
+        XCTAssertTrue(notificationsToggle.value as? String == "0")
     }
 }

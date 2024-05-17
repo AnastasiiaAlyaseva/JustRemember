@@ -37,6 +37,7 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundColor(.gray)) {
                         Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
+                            .accessibilityIdentifier(Accessibility.SettingsView.notificationsToggleIdentifier)
                         
                         if isNotificationsEnabled {
                             
@@ -64,6 +65,7 @@ struct SettingsView: View {
                                         self.notificationCount = notificationCount
                                     }
                                 }
+                                .accessibilityIdentifier(Accessibility.SettingsView.rememberRandomWordsIdentifier)
                                 .alert(isPresented:$errorScheduleNotificationAlert) {
                                     return Alert(
                                         title: Text("Oops!\n Check system permissions or time of notifications."),
@@ -73,7 +75,6 @@ struct SettingsView: View {
                             }
                         }
                     }
-                    .accessibilityIdentifier("NotificationsIdentifier")
                 
                 Section(header: Text("Do not disturb"),
                         footer: Text(isDoNotDisturbEnabled ? doNotDisturbHintText(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate) : "")
@@ -81,13 +82,13 @@ struct SettingsView: View {
                     .foregroundColor(.gray))
                 {
                     Toggle("Do not disturb", isOn: $isDoNotDisturbEnabled.animation())
+                        .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbToggleIdentifier)
                     
                     if isDoNotDisturbEnabled {
                         DatePicker("From", selection: $doNotDisturbStartDate, displayedComponents: .hourAndMinute)
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
                     }
                 }.disabled(notificationCount > 0)
-                    .accessibilityIdentifier("DoNotDisturbIdentifier")
                 
                 Section(header: Text("Appearance")) {
                     NavigationLink("Appearance", destination: AppearanceView())
