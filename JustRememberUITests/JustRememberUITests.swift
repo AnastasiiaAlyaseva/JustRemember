@@ -89,6 +89,62 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(wordSubtitle.exists)
     }
     
+    func testDoNotDisturbToggleEnablesDisablesFunction() throws {
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let doNotDisturbToggle = app.switches[Accessibility.SettingsView.doNotDisturbToggleIdentifier]
+        XCTAssertTrue(doNotDisturbToggle.exists)
+        XCTAssertTrue(doNotDisturbToggle.isEnabled)
+        doNotDisturbToggle.switches.firstMatch.tap()
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier]
+        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(stopDatePicker.exists)
+        
+        doNotDisturbToggle.switches.firstMatch.tap() // reset state
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "0")
+    }
+    
+    func testNotificationsToggleEnablesDisablesFunction() throws {
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let notificationsToggle = app.switches[Accessibility.SettingsView.notificationsToggleIdentifier]
+        XCTAssertTrue(notificationsToggle.exists)
+        XCTAssertTrue(notificationsToggle.isEnabled)
+        notificationsToggle.switches.firstMatch.tap()
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.notificationsStartDatePickerIdentifier]
+        let repeatIntervalPicker = app.buttons[Accessibility.SettingsView.notificationRepeatIntervalPickerIdentifier]
+        let scheduleButton = app.buttons[Accessibility.SettingsView.rememberRandomWordsIdentifier]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(repeatIntervalPicker.exists)
+        XCTAssertTrue(scheduleButton.exists)
+        XCTAssertTrue(scheduleButton.isEnabled)
+        scheduleButton.tap()
+        
+        let text = app.staticTexts[TestConstatns.remainingNotificationsCount].firstMatch
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: text, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        notificationsToggle.switches.firstMatch.tap() // reset state
+        XCTAssertTrue(notificationsToggle.value as? String == "0")
+    }
+    
     func testScheduleNotification() throws {
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
@@ -120,7 +176,7 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(scheduleButton.exists)
         XCTAssertTrue(scheduleButton.isEnabled)
         scheduleButton.tap()
-       
+        
         let text = app.staticTexts[TestConstatns.remainingNotificationsCount].firstMatch
         let exists = NSPredicate(format: "exists == 1")
         expectation(for: exists, evaluatedWith: text, handler: nil)
@@ -130,11 +186,11 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
         XCTAssertFalse(doNotDisturbToggle.isEnabled)
         
-        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePicker]
-        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePicker]
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier]
+        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier]
         XCTAssertTrue(startDatePicker.exists)
         XCTAssertTrue(stopDatePicker.exists)
-
+        
         notificationsToggle.switches.firstMatch.tap() // reset state
         XCTAssertTrue(notificationsToggle.value as? String == "0")
     }

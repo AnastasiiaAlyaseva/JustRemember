@@ -12,8 +12,10 @@ struct Accessibility {
         static let notificationsToggleIdentifier = "NotificationsToggleIdentifier"
         static let doNotDisturbToggleIdentifier = "DoNotDisturbToggleIdentifier"
         static let rememberRandomWordsIdentifier = "RememberRandomWordsIdentifier.Button"
-        static let doNotDisturbStartDatePicker = "doNotDisturbStartDatePickerIdentifier"
-        static let doNotDisturbStopDatePicker = "doNotDisturbStopDatePickerIdentifier"
+        static let doNotDisturbStartDatePickerIdentifier = "DoNotDisturbStartDatePickerIdentifier"
+        static let doNotDisturbStopDatePickerIdentifier = "DoNotDisturbStopDatePickerIdentifier"
+        static let notificationsStartDatePickerIdentifier = "NotificationsStartDatePickerIdentifier"
+        static let notificationRepeatIntervalPickerIdentifier = "NotificationRepeatIntervalPickerIdentifier"
     }
     
     struct TopicsView {
@@ -41,5 +43,4 @@ struct TestConstatns {
     static let springboardIdentifie = "com.apple.springboard"
     static let notificationPermissionButton = "Allow"
     static let remainingNotificationsCount = "64 notifications remaining"
-    
 }

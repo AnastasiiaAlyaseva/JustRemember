@@ -47,13 +47,14 @@ struct SettingsView: View {
                                     .foregroundColor(.gray)
                             } else {
                                 DatePicker("Start date:", selection: $notificationsStartDate, in: Date()...)
+                                    .accessibilityIdentifier(Accessibility.SettingsView.notificationsStartDatePickerIdentifier)
                                 Picker("Reapeat interval", selection: $notificationRepeatInterval) {
                                     ForEach(NotificationReapeatInterval.allCases, id:\.self) { interval in
                                         Text(interval.name).tag(interval)
                                     }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                                .accentColor(.label)
+                                }.accessibilityIdentifier(Accessibility.SettingsView.notificationRepeatIntervalPickerIdentifier)
+                                    .pickerStyle(MenuPickerStyle())
+                                    .accentColor(.label)
                                 
                                 Button("Remember random words") {
                                     scheduleAllWords()
@@ -86,9 +87,9 @@ struct SettingsView: View {
                     
                     if isDoNotDisturbEnabled {
                         DatePicker("From", selection: $doNotDisturbStartDate, displayedComponents: .hourAndMinute)
-                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStartDatePicker)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier)
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
-                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStopDatePicker)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier)
                     }
                 }.disabled(notificationCount > 0)
                 
