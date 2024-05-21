@@ -14,7 +14,7 @@ final class JustRememberUITests: XCTestCase {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
-        let settingsViewScreenTitle = app.navigationBars["Settings"]
+        let settingsViewScreenTitle = app.navigationBars[TestConstatns.settingsScreenTitle]
         
         // then
         XCTAssertTrue(profileButton.exists)
@@ -27,7 +27,7 @@ final class JustRememberUITests: XCTestCase {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let appearanceSettings = app.buttons[Accessibility.SettingsView.appearanceIdentifier]
-        let appearanceViewScreenTitle = app.navigationBars["Appearance"]
+        let appearanceViewScreenTitle = app.navigationBars[TestConstatns.appearanceScreenTitle]
         let appearanceSelectionCellLightMode  = app.buttons[Accessibility.AppearanceView.lightMode]
         let appearanceSelectionCellDarkMode  = app.buttons[Accessibility.AppearanceView.darkMode]
         let appearanceSelectionCellSystemMode  = app.buttons[Accessibility.AppearanceView.systemMode]
@@ -65,7 +65,7 @@ final class JustRememberUITests: XCTestCase {
     }
     
     func testNavigationToWordDescription() throws {
-        let startViewScreenTitle = app.navigationBars["Topics"]
+        let startViewScreenTitle = app.navigationBars[TestConstatns.topicsScreenTitle]
         XCTAssertTrue(startViewScreenTitle.exists)
         
         let elementsQuery = app.scrollViews.otherElements
@@ -90,7 +90,6 @@ final class JustRememberUITests: XCTestCase {
     }
     
     func testScheduleNotification() throws {
-        // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
         
@@ -102,9 +101,8 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(notificationsToggle.exists)
         XCTAssertTrue(notificationsToggle.isEnabled)
         
-        // https://forums.developer.apple.com/forums/thread/737880
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        let allowButton = springboard.buttons["Allow"].firstMatch
+        let springboard = XCUIApplication(bundleIdentifier: TestConstatns.springboardIdentifie)
+        let allowButton = springboard.buttons[TestConstatns.notificationPermissionButton].firstMatch
         if allowButton.exists {
             allowButton.tap()
         } else {
@@ -123,7 +121,7 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(scheduleButton.isEnabled)
         scheduleButton.tap()
        
-        let text = app.staticTexts["64 notifications remaining"].firstMatch
+        let text = app.staticTexts[TestConstatns.remainingNotificationsCount].firstMatch
         let exists = NSPredicate(format: "exists == 1")
         expectation(for: exists, evaluatedWith: text, handler: nil)
         waitForExpectations(timeout: 10, handler: nil)
@@ -131,11 +129,13 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(notificationsToggle.value as? String == "1")
         XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
         XCTAssertFalse(doNotDisturbToggle.isEnabled)
-        // from visible
-        // to visible
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePicker]
+        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePicker]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(stopDatePicker.exists)
 
-        // reset state
-        notificationsToggle.switches.firstMatch.tap()
+        notificationsToggle.switches.firstMatch.tap() // reset state
         XCTAssertTrue(notificationsToggle.value as? String == "0")
     }
 }

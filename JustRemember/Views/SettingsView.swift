@@ -86,7 +86,9 @@ struct SettingsView: View {
                     
                     if isDoNotDisturbEnabled {
                         DatePicker("From", selection: $doNotDisturbStartDate, displayedComponents: .hourAndMinute)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStartDatePicker)
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStopDatePicker)
                     }
                 }.disabled(notificationCount > 0)
                 
