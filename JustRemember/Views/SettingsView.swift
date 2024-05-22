@@ -37,6 +37,7 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundColor(.gray)) {
                         Toggle("Notifications", isOn: $isNotificationsEnabled.animation())
+                            .accessibilityIdentifier(Accessibility.SettingsView.notificationsToggleIdentifier)
                         
                         if isNotificationsEnabled {
                             
@@ -46,14 +47,14 @@ struct SettingsView: View {
                                     .foregroundColor(.gray)
                             } else {
                                 DatePicker("Start date:", selection: $notificationsStartDate, in: Date()...)
-                                
+                                    .accessibilityIdentifier(Accessibility.SettingsView.notificationsStartDatePickerIdentifier)
                                 Picker("Reapeat interval", selection: $notificationRepeatInterval) {
                                     ForEach(NotificationReapeatInterval.allCases, id:\.self) { interval in
                                         Text(interval.name).tag(interval)
                                     }
-                                }
-                                .pickerStyle(MenuPickerStyle())
-                                .accentColor(.label)
+                                }.accessibilityIdentifier(Accessibility.SettingsView.notificationRepeatIntervalPickerIdentifier)
+                                    .pickerStyle(MenuPickerStyle())
+                                    .accentColor(.label)
                                 
                                 Button("Remember random words") {
                                     scheduleAllWords()
@@ -65,6 +66,7 @@ struct SettingsView: View {
                                         self.notificationCount = notificationCount
                                     }
                                 }
+                                .accessibilityIdentifier(Accessibility.SettingsView.rememberRandomWordsIdentifier)
                                 .alert(isPresented:$errorScheduleNotificationAlert) {
                                     return Alert(
                                         title: Text("Oops!\n Check system permissions or time of notifications."),
@@ -74,16 +76,20 @@ struct SettingsView: View {
                             }
                         }
                     }
+                
                 Section(header: Text("Do not disturb"),
                         footer: Text(isDoNotDisturbEnabled ? doNotDisturbHintText(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate) : "")
                     .font(.footnote)
                     .foregroundColor(.gray))
                 {
                     Toggle("Do not disturb", isOn: $isDoNotDisturbEnabled.animation())
+                        .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbToggleIdentifier)
                     
                     if isDoNotDisturbEnabled {
                         DatePicker("From", selection: $doNotDisturbStartDate, displayedComponents: .hourAndMinute)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier)
                         DatePicker("To", selection: $doNotDisturbStopDate, displayedComponents: .hourAndMinute)
+                            .accessibilityIdentifier(Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier)
                     }
                 }.disabled(notificationCount > 0)
                 

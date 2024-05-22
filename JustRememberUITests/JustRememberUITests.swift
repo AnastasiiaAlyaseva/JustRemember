@@ -1,5 +1,3 @@
-
-
 import XCTest
 
 final class JustRememberUITests: XCTestCase {
@@ -16,7 +14,7 @@ final class JustRememberUITests: XCTestCase {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
-        let settingsViewScreenTitle = app.navigationBars["Settings"]
+        let settingsViewScreenTitle = app.navigationBars[TestConstatns.settingsScreenTitle]
         
         // then
         XCTAssertTrue(profileButton.exists)
@@ -29,7 +27,7 @@ final class JustRememberUITests: XCTestCase {
         // given
         let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
         let appearanceSettings = app.buttons[Accessibility.SettingsView.appearanceIdentifier]
-        let appearanceViewScreenTitle = app.navigationBars["Appearance"]
+        let appearanceViewScreenTitle = app.navigationBars[TestConstatns.appearanceScreenTitle]
         let appearanceSelectionCellLightMode  = app.buttons[Accessibility.AppearanceView.lightMode]
         let appearanceSelectionCellDarkMode  = app.buttons[Accessibility.AppearanceView.darkMode]
         let appearanceSelectionCellSystemMode  = app.buttons[Accessibility.AppearanceView.systemMode]
@@ -67,7 +65,7 @@ final class JustRememberUITests: XCTestCase {
     }
     
     func testNavigationToWordDescription() throws {
-        let startViewScreenTitle = app.navigationBars["Topics"]
+        let startViewScreenTitle = app.navigationBars[TestConstatns.topicsScreenTitle]
         XCTAssertTrue(startViewScreenTitle.exists)
         
         let elementsQuery = app.scrollViews.otherElements
@@ -89,5 +87,111 @@ final class JustRememberUITests: XCTestCase {
         XCTAssertTrue(imageWordsView.exists)
         XCTAssertTrue(wordTitle.exists)
         XCTAssertTrue(wordSubtitle.exists)
+    }
+    
+    func testDoNotDisturbToggleEnablesDisablesFunction() throws {
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let doNotDisturbToggle = app.switches[Accessibility.SettingsView.doNotDisturbToggleIdentifier]
+        XCTAssertTrue(doNotDisturbToggle.exists)
+        XCTAssertTrue(doNotDisturbToggle.isEnabled)
+        doNotDisturbToggle.switches.firstMatch.tap()
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier]
+        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(stopDatePicker.exists)
+        
+        doNotDisturbToggle.switches.firstMatch.tap() // reset state
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "0")
+    }
+    
+    func testNotificationsToggleEnablesDisablesFunction() throws {
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let notificationsToggle = app.switches[Accessibility.SettingsView.notificationsToggleIdentifier]
+        XCTAssertTrue(notificationsToggle.exists)
+        XCTAssertTrue(notificationsToggle.isEnabled)
+        notificationsToggle.switches.firstMatch.tap()
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.notificationsStartDatePickerIdentifier]
+        let repeatIntervalPicker = app.buttons[Accessibility.SettingsView.notificationRepeatIntervalPickerIdentifier]
+        let scheduleButton = app.buttons[Accessibility.SettingsView.rememberRandomWordsIdentifier]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(repeatIntervalPicker.exists)
+        XCTAssertTrue(scheduleButton.exists)
+        XCTAssertTrue(scheduleButton.isEnabled)
+        scheduleButton.tap()
+        
+        let text = app.staticTexts[TestConstatns.remainingNotificationsCount].firstMatch
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: text, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        notificationsToggle.switches.firstMatch.tap() // reset state
+        XCTAssertTrue(notificationsToggle.value as? String == "0")
+    }
+    
+    func testScheduleNotification() throws {
+        let profileButton = app.buttons[Accessibility.HomeView.settingsViewButton]
+        let settingsViewScreen = app.collectionViews[Accessibility.SettingsView.settingsViewIdentifier]
+        
+        XCTAssertTrue(profileButton.exists)
+        profileButton.tap()
+        XCTAssertTrue(settingsViewScreen.exists)
+        
+        let notificationsToggle = app.switches[Accessibility.SettingsView.notificationsToggleIdentifier]
+        XCTAssertTrue(notificationsToggle.exists)
+        XCTAssertTrue(notificationsToggle.isEnabled)
+        
+        let springboard = XCUIApplication(bundleIdentifier: TestConstatns.springboardIdentifie)
+        let allowButton = springboard.buttons[TestConstatns.notificationPermissionButton].firstMatch
+        if allowButton.exists {
+            allowButton.tap()
+        } else {
+            notificationsToggle.switches.firstMatch.tap()
+        }
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        
+        let doNotDisturbToggle = app.switches[Accessibility.SettingsView.doNotDisturbToggleIdentifier]
+        XCTAssertTrue(doNotDisturbToggle.exists)
+        XCTAssertTrue(doNotDisturbToggle.isEnabled)
+        doNotDisturbToggle.switches.firstMatch.tap()
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
+        
+        let scheduleButton = app.buttons[Accessibility.SettingsView.rememberRandomWordsIdentifier]
+        XCTAssertTrue(scheduleButton.exists)
+        XCTAssertTrue(scheduleButton.isEnabled)
+        scheduleButton.tap()
+        
+        let text = app.staticTexts[TestConstatns.remainingNotificationsCount].firstMatch
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: text, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        XCTAssertTrue(notificationsToggle.value as? String == "1")
+        XCTAssertTrue(doNotDisturbToggle.value as? String == "1")
+        XCTAssertFalse(doNotDisturbToggle.isEnabled)
+        
+        let startDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStartDatePickerIdentifier]
+        let stopDatePicker = app.datePickers[Accessibility.SettingsView.doNotDisturbStopDatePickerIdentifier]
+        XCTAssertTrue(startDatePicker.exists)
+        XCTAssertTrue(stopDatePicker.exists)
+        
+        notificationsToggle.switches.firstMatch.tap() // reset state
+        XCTAssertTrue(notificationsToggle.value as? String == "0")
     }
 }
