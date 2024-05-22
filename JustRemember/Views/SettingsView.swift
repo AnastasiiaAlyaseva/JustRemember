@@ -252,6 +252,8 @@ struct SettingsView: View {
         let startTime = startDate.formatted(date: .omitted, time: .shortened)
         let stopTime = stopDate.formatted(date: .omitted, time: .shortened)
         let mode = checkDoNotDisturbMode(startDate: startDate, stopDate: stopDate)
+        
+        //let mode =
         let tail = (mode == .night) ? "next day" : ""
         
         let message = "Every day\n\(startTime) - \(stopTime) \(tail)"

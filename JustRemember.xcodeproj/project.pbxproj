@@ -35,6 +35,8 @@
 		B5A9D7862BE3DA0C00D5E247 /* vocabularyData.json in Resources */ = {isa = PBXBuildFile; fileRef = B5A9D7842BE3DA0C00D5E247 /* vocabularyData.json */; };
 		B5A9D7882BE3DB3900D5E247 /* BandleDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D7872BE3DB3900D5E247 /* BandleDecodable.swift */; };
 		B5A9D7892BE3DB3900D5E247 /* BandleDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9D7872BE3DB3900D5E247 /* BandleDecodable.swift */; };
+		B5B40CBA2BFE17BB0058ED0A /* DoNotDisturbService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B40CB92BFE17BB0058ED0A /* DoNotDisturbService.swift */; };
+		B5B40CBC2BFE35640058ED0A /* DoNotDisturbServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B40CBB2BFE35640058ED0A /* DoNotDisturbServiceTests.swift */; };
 		B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */; };
 		B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */; };
 		B5BC819D2A7A81EA003D1104 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC819C2A7A81EA003D1104 /* SettingsView.swift */; };
@@ -93,6 +95,8 @@
 		B5A9D77C2BE3D4DE00D5E247 /* JustRememberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustRememberTests.swift; sourceTree = "<group>"; };
 		B5A9D7842BE3DA0C00D5E247 /* vocabularyData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vocabularyData.json; sourceTree = "<group>"; };
 		B5A9D7872BE3DB3900D5E247 /* BandleDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandleDecodable.swift; sourceTree = "<group>"; };
+		B5B40CB92BFE17BB0058ED0A /* DoNotDisturbService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoNotDisturbService.swift; sourceTree = "<group>"; };
+		B5B40CBB2BFE35640058ED0A /* DoNotDisturbServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoNotDisturbServiceTests.swift; sourceTree = "<group>"; };
 		B5BC81982A7948F4003D1104 /* WordDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDescriptionView.swift; sourceTree = "<group>"; };
 		B5BC819A2A7A7B2A003D1104 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		B5BC819C2A7A81EA003D1104 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		B5A9D77B2BE3D4DE00D5E247 /* JustRememberTests */ = {
 			isa = PBXGroup;
 			children = (
+				B5B40CBB2BFE35640058ED0A /* DoNotDisturbServiceTests.swift */,
 				B5A9D77C2BE3D4DE00D5E247 /* JustRememberTests.swift */,
 			);
 			path = JustRememberTests;
@@ -233,6 +238,7 @@
 				B5CD4C872A83B7FF00194E39 /* NetworkClient.swift */,
 				B50F14072AA7525800FF8B9D /* Color.swift */,
 				B50F14172AAB6D9400FF8B9D /* AppearanceController.swift */,
+				B5B40CB92BFE17BB0058ED0A /* DoNotDisturbService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 			files = (
 				B5BC819B2A7A7B2A003D1104 /* NotificationService.swift in Sources */,
 				B50F14182AAB6D9400FF8B9D /* AppearanceController.swift in Sources */,
+				B5B40CBA2BFE17BB0058ED0A /* DoNotDisturbService.swift in Sources */,
 				B512EA022A963D8C004788E9 /* SupportEmail.swift in Sources */,
 				B5BC81992A7948F4003D1104 /* WordDescriptionView.swift in Sources */,
 				B50F14082AA7525800FF8B9D /* Color.swift in Sources */,
@@ -430,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B40CBC2BFE35640058ED0A /* DoNotDisturbServiceTests.swift in Sources */,
 				B5A9D77D2BE3D4DE00D5E247 /* JustRememberTests.swift in Sources */,
 				B5A9D7892BE3DB3900D5E247 /* BandleDecodable.swift in Sources */,
 			);
