@@ -12,6 +12,11 @@ final class DoNotDisturbServiceTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+    func testInactivMode() throws {
+        let mode = doNotDisturbService.mode
+        XCTAssertEqual(mode, .inactive, "Expected mode to be inactive")
+    }
+    
     func testDayMode() throws {
         let startTime = DateComponents(hour: 8, minute: 0)
         let stopTime = DateComponents(hour: 20, minute: 0)
@@ -19,13 +24,13 @@ final class DoNotDisturbServiceTests: XCTestCase {
         guard let start: Date = calendar.date(from: startTime),
               let stop: Date = calendar.date(from: stopTime) else
         {
-            XCTFail("Failed")
+            XCTFail("Failed to create start or stop date for day mode")
             return
         }
         
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let mode = doNotDisturbService.mode
-        XCTAssertEqual(mode, .day, "Should be day")
+        XCTAssertEqual(mode, .day, "Expected mode to be day")
     }
     
     func testNightMode() throws {
@@ -35,31 +40,28 @@ final class DoNotDisturbServiceTests: XCTestCase {
         guard let start: Date = calendar.date(from: startTime),
               let stop: Date = calendar.date(from: stopTime) else
         {
-            XCTFail("Failed")
+            XCTFail("Failed to create start or stop date for night mode")
             return
         }
         
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let mode = doNotDisturbService.mode
-        XCTAssertEqual(mode, .night, "Should be night")
-    }
-    
-    func testInactivMode() throws {
-        let mode = doNotDisturbService.mode
-        XCTAssertEqual(mode, .inactive, "Should be inactive")
+        XCTAssertEqual(mode, .night, "Expected mode to be night")
     }
     
     func testStartTimeEqualesStopTime() throws {
-        let commonTime = DateComponents(hour: 8, minute: 0)
+        let startTime = DateComponents(hour: 8, minute: 0)
+        let stopTime = DateComponents(hour: 8, minute: 0)
         
-        guard let time: Date = calendar.date(from: commonTime) else
+        guard let start: Date = calendar.date(from: startTime),
+              let stop: Date = calendar.date(from: stopTime) else
         {
-            XCTFail("Failed")
+            XCTFail("Failed to create start or stop date when start time equals stop time")
             return
         }
-        doNotDisturbService = DoNotDisturbService(startDate: time, stopDate: time)
+        doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let mode = doNotDisturbService.mode
-        XCTAssertEqual(mode, .night, "Should be inactive when start time equals stop time")
+        XCTAssertEqual(mode, .inactive, "Should be inactive when start time equals stop time")
     }
     
     func testAdjustNotificationDateIfNeededActive() throws {
@@ -71,16 +73,16 @@ final class DoNotDisturbServiceTests: XCTestCase {
               let stop: Date = calendar.date(from: stopTime),
               let notificationDate: Date = calendar.date(from: notificationTime) else
         {
-            XCTFail("Failed")
+            XCTFail("Failed to create start, stop, notification date for active adjustment test")
             return
         }
         
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
-        XCTAssertEqual(adjustedDate, notificationDate, "Should be adjusted")
+        XCTAssertEqual(adjustedDate, stop, "Expected notification date to remain unchanged")
     }
     
-    func testAdjustNotificationDateIfNeededInctive() throws {
+    func testAdjustNotificationDateIfNeededInactive() throws {
         let startTime = DateComponents(hour: 8, minute: 0)
         let stopTime = DateComponents(hour: 20, minute: 0)
         let notificationTime = DateComponents(hour: 6, minute: 0)
@@ -89,13 +91,13 @@ final class DoNotDisturbServiceTests: XCTestCase {
               let stop: Date = calendar.date(from: stopTime),
               let notificationDate: Date = calendar.date(from: notificationTime) else
         {
-            XCTFail("Failed")
+            XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
             return
         }
         
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
-        XCTAssertEqual(adjustedDate, notificationDate, "Shouldn't be adjusted")
+        XCTAssertEqual(adjustedDate, notificationDate, "Expected notification date to be adjusted")
     }
     
     func testAdjustNotificationTimeWithHoursAndMinutes() throws {
@@ -129,7 +131,7 @@ final class DoNotDisturbServiceTests: XCTestCase {
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
         
-        XCTAssertEqual(adjustedDate, notificationDate, "Shouldn't be adjusted")
+        XCTAssertEqual(adjustedDate, notificationDate, "Expected notification date to be adjusted within DoNotDisturb range")
     }
     
 }

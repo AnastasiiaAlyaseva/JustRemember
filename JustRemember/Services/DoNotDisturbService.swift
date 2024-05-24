@@ -22,7 +22,11 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
         self.stopDate = stopDate
         
         if let startDate = startDate, let stopDate = stopDate {
-            if startDate > stopDate {
+            if startDate == stopDate {
+                self.range = nil
+                self.mode = .inactive
+            }
+            else if startDate > stopDate {
                 self.range = stopDate...startDate
                 self.mode = .night
             } else {
@@ -49,7 +53,7 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
             guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
             return nextDate
         }
-
+        
         return date
     }
 }

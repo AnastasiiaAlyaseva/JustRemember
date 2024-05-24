@@ -4,6 +4,7 @@ struct SettingsView: View {
     let storage: Storage
     
     private let notificationService: NotificationServiceProtocol = NotificationService()
+    private let doNotDisturbService: DoNotDisturbServiceProtocol = DoNotDisturbService()
     
     private let calendar = Calendar.current
     private static let fiveMinutes: TimeInterval = 5 * 60
@@ -164,8 +165,8 @@ struct SettingsView: View {
             let subtitle = word.meaning
             
             if isDoNotDisturbEnabled {
-                let doNotDisturbMode = checkDoNotDisturbMode(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate, notificationDate: currentNotificationDate)
-                currentNotificationDate = adjustCurrentNotificationDateIfNeeded(date: currentNotificationDate, doNotDisturbMode: doNotDisturbMode, doNotDisturbStopDate: doNotDisturbStopDate)
+                let doNotDisturbMode = DoNotDisturbService(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate)
+                currentNotificationDate = doNotDisturbMode.adjustNotificationDateIfNeeded(date: currentNotificationDate)
             }
             
             // uncomment for testing
@@ -176,86 +177,83 @@ struct SettingsView: View {
         }
     }
     
-    private func adjustCurrentNotificationDateIfNeeded(date: Date, doNotDisturbMode: DoNotDisturbMode, doNotDisturbStopDate: Date) -> Date {
-        
-        switch doNotDisturbMode {
-        case .day, .night:
-            // day: set time
-            // night: next day + set time
-            // autocalculation via nextDate()
-            let stopTime = calendar.dateComponents([.hour, .minute], from: doNotDisturbStopDate)
-            guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
-            return nextDate
-            
-        case .inactive:
-            return date
-        }
-    }
+    //    private func adjustCurrentNotificationDateIfNeeded(date: Date, doNotDisturbMode: DoNotDisturbMode, doNotDisturbStopDate: Date) -> Date {
+    //
+    //        switch doNotDisturbMode {
+    //        case .day, .night:
+    //            // day: set time
+    //            // night: next day + set time
+    //            // autocalculation via nextDate()
+    //            let stopTime = calendar.dateComponents([.hour, .minute], from: doNotDisturbStopDate)
+    //            guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
+    //            return nextDate
+    //
+    //        case .inactive:
+    //            return date
+    //        }
+    //    }
     
-    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date, notificationDate: Date) -> DoNotDisturbMode {
-        var doNotDisturbMode: DoNotDisturbMode = .inactive
-        
-        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
-        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
-        let dateTime = calendar.dateComponents([.hour, .minute], from: notificationDate)
-        
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime),
-              let date: Date = calendar.date(from: dateTime) else
-        {
-            print("Cannot create date from components")
-            return doNotDisturbMode
-        }
-        
-        if start > stop{
-            let nightRange = stop...start
-            let isDoNotDisturbActive = !nightRange.contains(date)
-            
-            if isDoNotDisturbActive {
-                doNotDisturbMode = .night
-            }
-        } else {
-            let dayRange = start...stop
-            let isDoNotDisturbActive = dayRange.contains(date)
-            
-            if isDoNotDisturbActive {
-                doNotDisturbMode = .day
-            }
-        }
-        
-        return doNotDisturbMode
-    }
-    
-    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date) -> DoNotDisturbMode {
-        var doNotDisturbMode: DoNotDisturbMode = .inactive
-        
-        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
-        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
-        
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime) else
-        {
-            print("Cannot create date from components")
-            return doNotDisturbMode
-        }
-        
-        if start > stop {
-            doNotDisturbMode = .night
-        } else {
-            doNotDisturbMode = .day
-        }
-        
-        return doNotDisturbMode
-    }
+    //    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date, notificationDate: Date) -> DoNotDisturbMode {
+    //        var doNotDisturbMode: DoNotDisturbMode = .inactive
+    //
+    //        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
+    //        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
+    //        let dateTime = calendar.dateComponents([.hour, .minute], from: notificationDate)
+    //
+    //        guard let start: Date = calendar.date(from: startTime),
+    //              let stop: Date = calendar.date(from: stopTime),
+    //              let date: Date = calendar.date(from: dateTime) else
+    //        {
+    //            print("Cannot create date from components")
+    //            return doNotDisturbMode
+    //        }
+    //
+    //        if start > stop{
+    //            let nightRange = stop...start
+    //            let isDoNotDisturbActive = !nightRange.contains(date)
+    //
+    //            if isDoNotDisturbActive {
+    //                doNotDisturbMode = .night
+    //            }
+    //        } else {
+    //            let dayRange = start...stop
+    //            let isDoNotDisturbActive = dayRange.contains(date)
+    //
+    //            if isDoNotDisturbActive {
+    //                doNotDisturbMode = .day
+    //            }
+    //        }
+    //
+    //        return doNotDisturbMode
+    //    }
+    //
+    //    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date) -> DoNotDisturbMode {
+    //        var doNotDisturbMode: DoNotDisturbMode = .inactive
+    //
+    //        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
+    //        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
+    //
+    //        guard let start: Date = calendar.date(from: startTime),
+    //              let stop: Date = calendar.date(from: stopTime) else
+    //        {
+    //            print("Cannot create date from components")
+    //            return doNotDisturbMode
+    //        }
+    //
+    //        if start > stop {
+    //            doNotDisturbMode = .night
+    //        } else {
+    //            doNotDisturbMode = .day
+    //        }
+    //
+    //        return doNotDisturbMode
+    //    }
     
     private func doNotDisturbHintText(startDate: Date, stopDate: Date) -> String {
         let startTime = startDate.formatted(date: .omitted, time: .shortened)
         let stopTime = stopDate.formatted(date: .omitted, time: .shortened)
-        let mode = checkDoNotDisturbMode(startDate: startDate, stopDate: stopDate)
-        
-        //let mode =
+        let mode = DoNotDisturbService(startDate: startDate, stopDate: stopDate).mode
         let tail = (mode == .night) ? "next day" : ""
-        
         let message = "Every day\n\(startTime) - \(stopTime) \(tail)"
         return message
     }
