@@ -22,15 +22,25 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
         self.stopDate = stopDate
         
         if let startDate = startDate, let stopDate = stopDate {
-            if startDate == stopDate {
+            let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
+            let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
+            
+            guard let start: Date = calendar.date(from: startTime),
+                  let stop: Date = calendar.date(from: stopTime) else {
+                self.range = nil
+                self.mode = .inactive
+                return
+            }
+            
+            if start == stop {
                 self.range = nil
                 self.mode = .inactive
             }
-            else if startDate > stopDate {
-                self.range = stopDate...startDate
+            else if start > stop {
+                self.range = stop...start
                 self.mode = .night
             } else {
-                self.range = startDate...stopDate
+                self.range = start...stop
                 self.mode = .day
             }
         } else {
@@ -38,16 +48,27 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
             self.mode = .inactive
         }
     }
-
+    
     private func isDoNotDisturbActive(date: Date) -> Bool {
         guard let range = range else { return false }
-        return !range.contains(date)
+        
+        let dateTime = calendar.dateComponents([.hour, .minute], from: date)
+        guard let date = calendar.date(from: dateTime) else { return false }
+        
+        switch mode {
+        case .day:
+            return !range.contains(date)
+        case .night:
+            return !range.contains(date)
+        case .inactive:
+            return false
+        }
         
     }
-
+    
     func adjustNotificationDateIfNeeded(date: Date) -> Date {
         guard let _ = startDate, let stopDate = stopDate else { return date }
-
+        
         if isDoNotDisturbActive(date: date) {
             let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
             guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
