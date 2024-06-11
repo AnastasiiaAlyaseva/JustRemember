@@ -57,7 +57,7 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
         
         switch mode {
         case .day:
-            return !range.contains(date)
+            return range.contains(date)
         case .night:
             return !range.contains(date)
         case .inactive:
