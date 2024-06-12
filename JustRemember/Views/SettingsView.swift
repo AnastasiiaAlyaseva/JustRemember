@@ -170,7 +170,7 @@ struct SettingsView: View {
             }
             
             // uncomment for testing
-            // print("title=\(title) currentNotificationDate=\(currentNotificationDate.formatted())")
+             print("title=\(title) currentNotificationDate=\(currentNotificationDate.formatted())")
             
             notificationService.scheduleNotification(title: title, subtitle: subtitle, date: currentNotificationDate)
             currentNotificationDate += TimeInterval(notificationRepeatInterval.rawValue)

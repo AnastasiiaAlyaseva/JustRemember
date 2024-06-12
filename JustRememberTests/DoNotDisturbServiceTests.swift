@@ -107,14 +107,23 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // ---- 8.00 -- x -- 20.00 ----
     func testNotificationDateInDoNotDisturbRange() throws {
-        let startTime = today(hour: 8, minute: 0)
-        let stopTime = today(hour: 20, minute: 0)
-        let notificationTime = today(hour: 10, minute: 0)
+//        let startTime = today(hour: 8, minute: 0)
+//        let stopTime = today(hour: 20, minute: 0)
+//        let notificationTime = today(hour: 10, minute: 0)
+//        
+//        guard let start: Date = calendar.date(from: startTime),
+//              let stop: Date = calendar.date(from: stopTime),
+//              let notificationDate: Date = calendar.date(from: notificationTime) else
+//        {
+//            XCTFail("Failed to create start, stop, notification date for active adjustment test")
+//            return
+//        }
         
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime),
-              let notificationDate: Date = calendar.date(from: notificationTime) else
-        {
+        let start = today(hour: 8, minute: 0)
+        let stop = today(hour: 20, minute: 0)
+        let notificationDate = today(hour: 10, minute: 0)
+        
+        guard let start, let stop, let notificationDate else {
             XCTFail("Failed to create start, stop, notification date for active adjustment test")
             return
         }
@@ -183,13 +192,21 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // ---- 8.00 ---- 20.00 == x ----
     func testNotificationDateEqualesStopTime() throws {
-        let startTime = today(hour: 8, minute: 0) //DateComponents(hour: 8, minute: 0)
-        let stopTime = today(hour: 20, minute: 0) //DateComponents(hour: 20, minute: 0)
-        let notificationTime = today(hour: 20, minute: 0) //DateComponents(hour: 20, minute: 0)
+//        let startTime = today(hour: 8, minute: 0) //DateComponents(hour: 8, minute: 0)
+//        let stopTime = today(hour: 20, minute: 0) //DateComponents(hour: 20, minute: 0)
+//        let notificationTime = today(hour: 20, minute: 0) //DateComponents(hour: 20, minute: 0)
+//        
+//        guard let start: Date = calendar.date(from: startTime),
+//              let stop: Date = calendar.date(from: stopTime),
+//              let notificationDate: Date = calendar.date(from: notificationTime) else
+//        {
+//            XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
+//            return
+//        }
         
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime),
-              let notificationDate: Date = calendar.date(from: notificationTime) else
+        guard let start: Date = today(hour: 8, minute: 0),
+              let stop: Date = today(hour: 20, minute: 0),
+              let notificationDate: Date = today(hour: 20, minute: 0) else
         {
             XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
             return
@@ -227,7 +244,7 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func today(hour: Int, minute: Int) -> DateComponents {
+    private func todayComponents(hour: Int, minute: Int) -> DateComponents {
         let today = Date()
         var dateComponents = calendar.dateComponents([.year, .month, .day], from: today)
         dateComponents.hour = hour
@@ -235,25 +252,28 @@ final class DoNotDisturbServiceTests: XCTestCase {
         return dateComponents
     }
     
-    private func tomorrow(hour: Int, minute: Int) -> DateComponents {
+    private func today(hour: Int, minute: Int) -> Date? {
+        let dateComponents = todayComponents(hour: hour, minute: minute)
+        return calendar.date(from: dateComponents)
+    }
+    
+    private func tomorrowComponents(hour: Int, minute: Int) -> DateComponents? {
         let today = Date()
         guard let tomorrow = calendar.date(byAdding: .day, value: 1, to: today) else {
-            XCTFail("no tomorrow data")
-            return DateComponents()
+            XCTFail("no tomorrow date")
+            return nil
         }
         var dateComponents = calendar.dateComponents([.year, .month, .day], from: tomorrow)
         dateComponents.hour = hour
         dateComponents.minute = minute
         return dateComponents
     }
+    
+    private func tomorrow(hour: Int, minute: Int) -> Date? {
+        guard let dateComponents = tomorrowComponents(hour: hour, minute: minute) else {
+            XCTFail("no tomorrow dateComponents")
+            return nil
+        }
+        return calendar.date(from: dateComponents)
+    }
 }
-
-//extension Date {
-//    private func today(hour: Int, minute: Int) -> Date? {
-//        let today = Date()
-//        var dateComponents = calendar.dateComponents([.year, .month, .day], from: today)
-//        dateComponents.hour = hour
-//        dateComponents.minute = minute
-//        return calendar.date(from: dateComponents)
-//    }
-//}
