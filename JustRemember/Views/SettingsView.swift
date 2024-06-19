@@ -4,7 +4,6 @@ struct SettingsView: View {
     let storage: Storage
     
     private let notificationService: NotificationServiceProtocol = NotificationService()
-    private let doNotDisturbService: DoNotDisturbServiceProtocol = DoNotDisturbService()
     
     private let calendar = Calendar.current
     private static let fiveMinutes: TimeInterval = 5 * 60

@@ -32,11 +32,11 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
                 return
             }
             
-            if start == stop {
-                self.range = nil
-                self.mode = .inactive
-            }
-            else if start > stop {
+//            if start == stop {
+//                self.range = nil
+//                self.mode = .inactive
+//            }
+             if start > stop {
                 self.range = stop...start
                 self.mode = .night
             } else {
@@ -70,6 +70,9 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
         guard let _ = startDate, let stopDate = stopDate else { return date }
         
         if isDoNotDisturbActive(date: date) {
+            // day: set time
+            // night: next day + set time
+            // autocalculation via nextDate()
             let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
             guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
             return nextDate

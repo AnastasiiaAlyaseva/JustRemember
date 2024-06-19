@@ -75,11 +75,8 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // ---- 8.01 -- x -- 8.00 (tomorrow) ----
     func testSetModeIsNightDuringSpecifiedTime() throws {
-        let startTime = DateComponents(hour: 8, minute: 1)
-        let stopTime = DateComponents(hour: 8, minute: 0)
-        
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime) else
+        guard let start: Date = today(hour: 8, minute: 1),
+              let stop: Date = tomorrow(hour: 8, minute: 0) else
         {
             XCTFail("Failed to create start or stop date for night mode")
             return
@@ -111,13 +108,9 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // -- x -- 8.00 ---- 20.00 ----
     func testNotificationDateBeforeStartTimeDoNotDisturbRange() throws {
-        let startTime = DateComponents(hour: 8, minute: 0)
-        let stopTime = DateComponents(hour: 20, minute: 0)
-        let notificationTime = DateComponents(hour: 6, minute: 0)
-        
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime),
-              let notificationDate: Date = calendar.date(from: notificationTime) else
+        guard let start: Date = today(hour: 8, minute: 0),
+              let stop: Date = today(hour: 20, minute: 0),
+              let notificationDate: Date = today(hour: 6, minute: 0) else
         {
             XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
             return
@@ -130,13 +123,9 @@ final class DoNotDisturbServiceTests: XCTestCase {
     
     // ---- 8.00 ---- 20.00 -- x --
     func testNotificationDateAfterStopTimeDoNotDisturbRange() throws {
-        let startTime = DateComponents(hour: 8, minute: 0)
-        let stopTime = DateComponents(hour: 20, minute: 0)
-        let notificationTime = DateComponents(hour: 23, minute: 0)
-        
-        guard let start: Date = calendar.date(from: startTime),
-              let stop: Date = calendar.date(from: stopTime),
-              let notificationDate: Date = calendar.date(from: notificationTime) else
+        guard let start: Date = today(hour: 8, minute: 0),
+              let stop: Date = today(hour: 20, minute: 0),
+              let notificationDate: Date = today(hour: 23, minute: 0) else
         {
             XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
             return
@@ -155,7 +144,11 @@ final class DoNotDisturbServiceTests: XCTestCase {
         
         guard let start: Date = calendar.date(from: startTime),
               let stop: Date = calendar.date(from: stopTime),
-              let notificationDate: Date = calendar.date(from: notificationTime) else
+              let notificationDate: Date = calendar.date(from: notificationTime) 
+//        guard let start: Date = today(hour: 8, minute: 0),
+//                      let stop: Date = today(hour: 20, minute: 0),
+//                      let notificationDate: Date = today(hour: 8, minute: 0)
+        else
         {
             XCTFail("Failed to create start, stop, notification date for inactive adjustment test")
             return
@@ -259,6 +252,35 @@ final class DoNotDisturbServiceTests: XCTestCase {
         doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
         let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
         XCTAssertEqual(adjustedDate, notificationDate, "Expected notification date to remain unchanged after night mode")
+    }
+    
+    // ---- 20.00 == x ---- 8.00
+    func testNotificationDateEqualesStartTimeNightMode() throws {
+        guard let start: Date = today(hour: 20, minute: 0),
+              let stop: Date = tomorrow(hour: 8, minute: 0),
+              let notificationDate: Date = today(hour: 20, minute: 0) else
+        {
+            XCTFail("Failed to create start, stop or notification date for night mode test")
+            return
+        }
+        
+        doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
+        let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
+        XCTAssertEqual(adjustedDate, notificationDate)
+    }
+    // ---- 20.00 ---- 8.00 == x ----
+    func testNotificationDateEqualesStopTimeNightMode() throws {
+        guard let start: Date = today(hour: 20, minute: 0),
+              let stop: Date = tomorrow(hour: 8, minute: 0),
+              let notificationDate: Date = tomorrow(hour: 8, minute: 0) else
+        {
+            XCTFail("Failed to create start, stop or notification date for night mode test")
+            return
+        }
+        
+        doNotDisturbService = DoNotDisturbService(startDate: start, stopDate: stop)
+        let adjustedDate = doNotDisturbService.adjustNotificationDateIfNeeded(date: notificationDate)
+        XCTAssertEqual(adjustedDate, notificationDate)
     }
     
     // MARK: - Helpers
