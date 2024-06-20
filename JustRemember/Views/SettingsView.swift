@@ -159,94 +159,23 @@ struct SettingsView: View {
             allWords += collection.words
         }
         let randomWords = allWords.shuffled().prefix(AppConstatns.maxCountNotification)
+        let doNotDisturbMode = DoNotDisturbService(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate)
+        
         for word in randomWords {
             let title = word.word
             let subtitle = word.meaning
             
             if isDoNotDisturbEnabled {
-                let doNotDisturbMode = DoNotDisturbService(startDate: doNotDisturbStartDate, stopDate: doNotDisturbStopDate)
                 currentNotificationDate = doNotDisturbMode.adjustNotificationDateIfNeeded(date: currentNotificationDate)
             }
             
             // uncomment for testing
-             print("title=\(title) currentNotificationDate=\(currentNotificationDate.formatted())")
+            // print("title=\(title) currentNotificationDate=\(currentNotificationDate.formatted())")
             
             notificationService.scheduleNotification(title: title, subtitle: subtitle, date: currentNotificationDate)
             currentNotificationDate += TimeInterval(notificationRepeatInterval.rawValue)
         }
     }
-    
-    //    private func adjustCurrentNotificationDateIfNeeded(date: Date, doNotDisturbMode: DoNotDisturbMode, doNotDisturbStopDate: Date) -> Date {
-    //
-    //        switch doNotDisturbMode {
-    //        case .day, .night:
-    //            // day: set time
-    //            // night: next day + set time
-    //            // autocalculation via nextDate()
-    //            let stopTime = calendar.dateComponents([.hour, .minute], from: doNotDisturbStopDate)
-    //            guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
-    //            return nextDate
-    //
-    //        case .inactive:
-    //            return date
-    //        }
-    //    }
-    
-    //    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date, notificationDate: Date) -> DoNotDisturbMode {
-    //        var doNotDisturbMode: DoNotDisturbMode = .inactive
-    //
-    //        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
-    //        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
-    //        let dateTime = calendar.dateComponents([.hour, .minute], from: notificationDate)
-    //
-    //        guard let start: Date = calendar.date(from: startTime),
-    //              let stop: Date = calendar.date(from: stopTime),
-    //              let date: Date = calendar.date(from: dateTime) else
-    //        {
-    //            print("Cannot create date from components")
-    //            return doNotDisturbMode
-    //        }
-    //
-    //        if start > stop{
-    //            let nightRange = stop...start
-    //            let isDoNotDisturbActive = !nightRange.contains(date)
-    //
-    //            if isDoNotDisturbActive {
-    //                doNotDisturbMode = .night
-    //            }
-    //        } else {
-    //            let dayRange = start...stop
-    //            let isDoNotDisturbActive = dayRange.contains(date)
-    //
-    //            if isDoNotDisturbActive {
-    //                doNotDisturbMode = .day
-    //            }
-    //        }
-    //
-    //        return doNotDisturbMode
-    //    }
-    //
-    //    private func checkDoNotDisturbMode(startDate: Date, stopDate: Date) -> DoNotDisturbMode {
-    //        var doNotDisturbMode: DoNotDisturbMode = .inactive
-    //
-    //        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
-    //        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
-    //
-    //        guard let start: Date = calendar.date(from: startTime),
-    //              let stop: Date = calendar.date(from: stopTime) else
-    //        {
-    //            print("Cannot create date from components")
-    //            return doNotDisturbMode
-    //        }
-    //
-    //        if start > stop {
-    //            doNotDisturbMode = .night
-    //        } else {
-    //            doNotDisturbMode = .day
-    //        }
-    //
-    //        return doNotDisturbMode
-    //    }
     
     private func doNotDisturbHintText(startDate: Date, stopDate: Date) -> String {
         let startTime = startDate.formatted(date: .omitted, time: .shortened)

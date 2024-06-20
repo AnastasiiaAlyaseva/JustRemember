@@ -21,31 +21,31 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
         self.startDate = startDate
         self.stopDate = stopDate
         
-        if let startDate = startDate, let stopDate = stopDate {
-            let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
-            let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
-            
-            guard let start: Date = calendar.date(from: startTime),
-                  let stop: Date = calendar.date(from: stopTime) else {
-                self.range = nil
-                self.mode = .inactive
-                return
-            }
-            
-//            if start == stop {
-//                self.range = nil
-//                self.mode = .inactive
-//            }
-             if start > stop {
-                self.range = stop...start
-                self.mode = .night
-            } else {
-                self.range = start...stop
-                self.mode = .day
-            }
-        } else {
+        guard let startDate = startDate, let stopDate = stopDate else {
             self.range = nil
             self.mode = .inactive
+            return
+        }
+        
+        let startTime = calendar.dateComponents([.hour, .minute], from: startDate)
+        let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
+        
+        guard let start: Date = calendar.date(from: startTime),
+              let stop: Date = calendar.date(from: stopTime) else {
+            self.range = nil
+            self.mode = .inactive
+            return
+        }
+        
+        if start == stop {
+            self.range = nil
+            self.mode = .inactive
+        } else if start > stop {
+            self.range = stop...start
+            self.mode = .night
+        } else {
+            self.range = start...stop
+            self.mode = .day
         }
     }
     
@@ -73,6 +73,7 @@ final class DoNotDisturbService: DoNotDisturbServiceProtocol {
             // day: set time
             // night: next day + set time
             // autocalculation via nextDate()
+            if stopDate == date { return date }
             let stopTime = calendar.dateComponents([.hour, .minute], from: stopDate)
             guard let nextDate = calendar.nextDate(after: date, matching: stopTime, matchingPolicy: .nextTime) else { return date }
             return nextDate
